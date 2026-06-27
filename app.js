@@ -198,7 +198,7 @@ function adminExport(){
   const rows=[['Категорія','Послуга','Ціна (₴)']];
   SERVICES.him.forEach(s=>rows.push(['Для нього',s.name,getPrice(s.id,s.price)]));
   SERVICES.her.forEach(s=>rows.push(['Для неї',s.name,getPrice(s.id,s.price)]));
-  downloadCSV('KlippaBeauTy_Prices_'+todayStr()+'.csv',rows);
+  downloadCSV('MOles_Prices_'+todayStr()+'.csv',rows);
   addLog('Експорт','Прайс-лист CSV');
   renderLogs();
 }
@@ -207,7 +207,7 @@ function adminExportLog(){
   const logs=getLogs();
   const rows=[['Дата','Операція','Деталі']];
   logs.forEach(l=>rows.push([l.date,l.action,l.detail]));
-  downloadCSV('KlippaBeauTy_Log_'+todayStr()+'.csv',rows);
+  downloadCSV('MOles_Log_'+todayStr()+'.csv',rows);
   addLog('Експорт','Журнал операцій CSV');
   renderLogs();
 }

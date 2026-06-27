@@ -1,5 +1,5 @@
 {
-  "name": "MOles — KlippaBeauTy",
+  "name": "MOles — Beauty Salon",
   "short_name": "MOles",
   "description": "Стрижки та б'юті послуги. OlesIya SaloN — Київ.",
   "start_url": "./index.html",
@@ -9,7 +9,7 @@
   "theme_color": "#E8845A",
   "orientation": "portrait",
   "lang": "uk",
-  "id": "klippabeauty",
+  "id": "moles",
   "categories": ["beauty", "lifestyle"],
   "icons": [
     {"src":"icons/icon-72.png","sizes":"72x72","type":"image/png","purpose":"any"},
