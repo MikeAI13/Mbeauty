@@ -45,7 +45,7 @@
 }
 
 /* === BASE === */
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth;font-size:clamp(14px, 3.8vw, 18px)}
 body{
   background:var(--bg);color:var(--text);
   font-family:'Montserrat',sans-serif;font-weight:300;
@@ -73,7 +73,7 @@ body{
   display:flex;align-items:center;justify-content:space-between;
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
 }
-.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:0.12em;color:var(--peach);text-decoration:none}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem, 3.5vw, 1.8rem);font-weight:400;letter-spacing:0.12em;color:var(--peach);text-decoration:none}
 .nav-brand span{color:var(--text2);font-weight:300}
 .nav-time{font-size:0.68rem;color:var(--muted)}
 
@@ -82,10 +82,10 @@ body{
 .page.active{display:flex}
 
 /* === HERO === */
-.hero{padding:2rem 1.2rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;background:var(--bg2)}
+.hero{padding:clamp(1.5rem, 5vw, 4rem) clamp(1rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;background:var(--bg2)}
 .hero-pat{position:absolute;inset:0;pointer-events:none;opacity:0.1}
 .hero-pat svg{width:100%;height:100%}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;line-height:0.9;color:var(--text);position:relative;z-index:2;margin-bottom:0.4rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem, 9vw, 6rem);font-weight:300;line-height:0.9;color:var(--text);position:relative;z-index:2;margin-bottom:0.4rem}
 .hero-title em{color:var(--peach);font-style:italic}
 .hero-sub{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);z-index:2;position:relative}
 
@@ -135,17 +135,17 @@ body{
 .cat-title-row.her{border-color:var(--rose)}
 .cat-title-row.special{border-color:var(--gold)}
 .cat-icon{font-size:1.8rem;margin-bottom:4px}
-.cat-name{font-size:1.5rem;font-weight:300;font-family:'Cormorant Garamond',serif;color:var(--text)}
+.cat-name{font-size:clamp(1.2rem, 4vw, 2rem);font-weight:300;font-family:'Cormorant Garamond',serif;color:var(--text)}
 .cat-name em{font-style:italic}
 .cat-name.him em{color:var(--brown)}
 .cat-name.her em{color:var(--rose)}
 .cat-name.special em{color:var(--gold)}
-.detail-item{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border-bottom:1px solid var(--bdr);transition:background 0.15s}
+.detail-item{display:flex;align-items:center;gap:clamp(0.5rem, 2vw, 1rem);padding:clamp(0.6rem, 2vw, 1.2rem) clamp(0.8rem, 3vw, 2rem);border-bottom:1px solid var(--bdr);transition:background 0.15s}
 .detail-item:active{background:var(--card2)}
 .detail-ico{font-size:1.4rem;width:32px;text-align:center;flex-shrink:0}
-.detail-name{font-size:0.82rem;font-weight:600;color:var(--text);font-family:'Cormorant Garamond',serif}
+.detail-name{font-size:clamp(0.75rem, 2.2vw, 1rem);font-weight:600;color:var(--text);font-family:'Cormorant Garamond',serif}
 .detail-desc{font-size:0.62rem;color:var(--muted);margin-top:2px;line-height:1.4}
-.detail-price{margin-left:auto;font-size:0.82rem;color:var(--peach);font-weight:700;font-family:'Cormorant Garamond',serif;flex-shrink:0;padding-left:0.5rem}
+.detail-price{margin-left:auto;font-size:clamp(0.75rem, 2.2vw, 1rem);color:var(--peach);font-weight:700;font-family:'Cormorant Garamond',serif;flex-shrink:0;padding-left:0.5rem}
 
 /* === SPECIAL PAGE === */
 .special-page-header{padding:1rem 1.1rem 0.9rem;background:var(--gold2);border-bottom:2px solid var(--gold)}
@@ -199,7 +199,7 @@ body{
 /* === PAGE HEADER === */
 .page-hdr{padding:1rem 1rem 0.7rem}
 .page-hdr-lbl{font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--peach);display:block;margin-bottom:3px;font-weight:600}
-.page-hdr-title{font-size:1.4rem;font-weight:300;font-family:'Cormorant Garamond',serif;color:var(--text)}
+.page-hdr-title{font-size:clamp(1.2rem, 4vw, 2rem);font-weight:300;font-family:'Cormorant Garamond',serif;color:var(--text)}
 .page-hdr-title em{font-style:italic;color:var(--peach)}
 
 /* === BOTTOM NAV === */
@@ -242,7 +242,7 @@ body{
 .prices-banner-arr{font-size:1.3rem;color:rgba(255,255,255,0.7);flex-shrink:0}
 
 /* === CALCULATOR === */
-.calc-wrap{margin:0.8rem;border:1.5px solid var(--bdr2);border-radius:14px;overflow:hidden}
+.calc-wrap{margin:clamp(0.5rem, 2vw, 1.5rem);border:1.5px solid var(--bdr2);border-radius:14px;overflow:hidden}
 .calc-header{padding:0.8rem 1rem 0.6rem;background:var(--bg2);display:flex;align-items:center;justify-content:space-between}
 .calc-title{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
 .calc-toggle{display:flex;gap:4px}
@@ -257,7 +257,7 @@ body{
 .calc-item-price{font-size:0.72rem;color:var(--peach);font-weight:600}
 .calc-total{display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1rem;background:var(--bg2);border-top:1.5px solid var(--bdr2)}
 .calc-total-lbl{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)}
-.calc-total-sum{font-size:1.3rem;font-weight:700;color:var(--peach);font-family:'Cormorant Garamond',serif}
+.calc-total-sum{font-size:clamp(1.1rem, 3.5vw, 1.6rem);font-weight:700;color:var(--peach);font-family:'Cormorant Garamond',serif}
 .calc-book{display:block;padding:0.7rem;text-align:center;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;text-transform:uppercase}
 
 /* === SERVICE TABS === */
@@ -308,52 +308,19 @@ body{
 
 /* === RESPONSIVE === */
 @media(min-width:768px){
-  .hero-title{font-size:5rem}
-  .hero-sub{font-size:0.75rem;letter-spacing:0.3em}
-  .hero{padding:3rem 2rem 2rem}
-  .parallel{grid-template-columns:1fr 1fr;max-width:900px;margin:0 auto}
-  .p-item{padding:1rem 1.2rem;min-height:85px}
-  .p-item-name{font-size:0.9rem}
-  .p-item-price{font-size:0.8rem}
-  .col-head{padding:0.9rem 1.2rem}
-  .col-head-txt{font-size:0.75rem}
-  .detail-item{padding:1rem 1.5rem}
-  .detail-name{font-size:0.95rem}
-  .detail-price{font-size:0.95rem}
-  .detail-desc{font-size:0.7rem}
-  .page-hdr{padding:1.5rem 1.5rem 1rem}
-  .page-hdr-title{font-size:1.8rem}
-  .cat-title-row{padding:0 1.5rem 1rem}
-  .cat-name{font-size:1.8rem}
-  .cat-back{padding:1.2rem 1.5rem 0.6rem}
-  .booking-wrap{max-width:500px;margin:0 auto;padding:0 1.5rem 2rem}
-  .special-option{margin:1.2rem 1.5rem;max-width:700px}
-  .ig-cta{margin:1rem 1.5rem;max-width:700px}
-  .contact-item{padding:1rem 1.5rem}
-  .map-box{margin:1rem 1.5rem}
-  .top-nav{padding:calc(var(--safe-top) + 1rem) 2rem 1rem}
-  .nav-brand{font-size:1.5rem}
-  .ni-lbl{font-size:0.58rem}
-  .ni svg{width:24px;height:24px}
+  .special-option{margin:1.2rem 1.5rem;max-width:700px;margin-left:auto;margin-right:auto}
+  .contact-item{max-width:800px;margin-left:auto;margin-right:auto}
+  .map-box{max-width:800px;margin-left:auto;margin-right:auto}
+  .calc-wrap{max-width:500px;margin-left:auto;margin-right:auto}
   .adm-section{padding:0.7rem 1.5rem}
   .adm-log{margin:0 1.5rem 1.5rem}
+  .ni svg{width:24px;height:24px}
 }
 
 @media(min-width:1024px){
-  .hero-title{font-size:6rem}
-  .hero{padding:4rem 2rem 3rem}
-  .parallel{max-width:1000px}
-  .p-item{padding:1.2rem 1.5rem;min-height:95px}
-  .p-item-name{font-size:1rem}
-  .detail-item{padding:1.2rem 2rem;max-width:900px;margin-left:auto;margin-right:auto}
-  .booking-wrap{max-width:600px}
-  .special-option,.ig-cta{max-width:800px;margin-left:auto;margin-right:auto}
-  .contact-item{max-width:800px;margin-left:auto;margin-right:auto}
-  .map-box{max-width:800px;margin-left:auto;margin-right:auto}
-  .top-nav{padding:calc(var(--safe-top) + 1rem) 3rem 1rem}
-  .nav-brand{font-size:1.6rem}
   .bottom-nav{justify-content:center;gap:0.5rem}
-  .ni{flex:none;padding:0.25rem 1.5rem}
+  .ni{flex:none;padding:0.25rem 2rem}
+  .top-nav{padding:calc(var(--safe-top) + 1rem) 3rem 1rem}
 }
 
 @media(prefers-reduced-motion:reduce){*{transition-duration:0.01ms !important}}
