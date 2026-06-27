@@ -66,11 +66,17 @@ body{
   font-family:'Montserrat',sans-serif;font-weight:300;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
   padding-bottom:calc(64px + var(--safe-bot));
+  max-width:480px;margin:0 auto;
+  position:relative;
+}
+@media(min-width:481px){
+  html{background:#1A1614}
+  body{box-shadow:0 0 40px rgba(0,0,0,0.3);min-height:100vh}
 }
 
 /* INSTALL BANNER */
 #install-banner{
-  display:none;position:fixed;top:0;left:0;right:0;z-index:999;
+  display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:999;
   background:var(--gold);padding:calc(var(--safe-top) + 0.6rem) 1rem 0.6rem;
   align-items:center;gap:0.8rem;
 }
@@ -81,7 +87,7 @@ body{
 
 /* TOP NAV */
 .top-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;
   background:rgba(255,248,244,0.97);
   border-bottom:1px solid var(--bdr);
   padding:calc(var(--safe-top) + 0.8rem) 1.2rem 0.8rem;
@@ -219,7 +225,7 @@ body{
 
 /* BOTTOM NAV */
 .bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;
   background:rgba(255,248,244,0.97);
   border-top:1px solid var(--bdr);
   padding:0.5rem 0 calc(0.5rem + var(--safe-bot));
@@ -233,7 +239,7 @@ body{
 
 /* iOS INSTALL */
 #ios-banner{
-  display:none;position:fixed;bottom:calc(64px + var(--safe-bot) + 8px);left:1rem;right:1rem;z-index:200;
+  display:none;position:fixed;bottom:calc(64px + var(--safe-bot) + 8px);left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:448px;z-index:200;
   background:#fff;border:1.5px solid var(--peach3);border-radius:14px;padding:1rem;
   box-shadow:0 4px 20px rgba(0,0,0,0.1);text-align:center;
 }
@@ -262,6 +268,7 @@ body{
 .theme-dot.active{border-color:var(--text);transform:scale(1.15)}
 .theme-dot:active{transform:scale(0.9)}
 .theme-dark .top-nav,.theme-dark .bottom-nav{background:rgba(26,22,20,0.97)}
+@media(min-width:481px){.theme-dark~body,.theme-dark body{box-shadow:0 0 40px rgba(232,132,90,0.15)}}
 .theme-dark .admin-pin input,.theme-dark .adm-item-price,.theme-dark .f-inp,.theme-dark .f-sel{background:var(--bg2);color:var(--text)}
 .theme-dark .adm-log{background:var(--bg2)}
 
