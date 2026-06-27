@@ -11,6 +11,9 @@
 <title>KlippaBeauTy</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144.png">
+<link rel="apple-touch-icon" sizes="128x128" href="icons/icon-128.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -228,6 +231,17 @@ body{
 .ni svg{width:22px;height:22px}
 .ni-lbl{font-size:0.52rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600}
 
+/* iOS INSTALL */
+#ios-banner{
+  display:none;position:fixed;bottom:calc(64px + var(--safe-bot) + 8px);left:1rem;right:1rem;z-index:200;
+  background:#fff;border:1.5px solid var(--peach3);border-radius:14px;padding:1rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);text-align:center;
+}
+#ios-banner.show{display:block}
+#ios-banner p{font-size:0.72rem;color:var(--text);line-height:1.6;margin-bottom:0.5rem}
+#ios-banner .ios-steps{font-size:0.65rem;color:var(--muted);line-height:1.8}
+#ios-banner .ios-close{position:absolute;top:8px;right:10px;background:none;border:none;font-size:1.1rem;color:var(--muted);cursor:pointer}
+
 /* THEME PICKER */
 .theme-row{display:flex;gap:8px;padding:0.5rem 1rem;flex-wrap:wrap}
 .theme-dot{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:border-color 0.2s,transform 0.15s;flex-shrink:0}
@@ -266,6 +280,15 @@ body{
 </style>
 </head>
 <body>
+
+<div id="ios-banner">
+  <button class="ios-close" onclick="document.getElementById('ios-banner').classList.remove('show');localStorage.setItem('kb_ios_dismiss','1')">✕</button>
+  <p>📲 Встановіть <strong>KlippaBeauTy</strong></p>
+  <div class="ios-steps">
+    1. Натисніть <strong>□↑</strong> (Поділитись)<br>
+    2. Оберіть <strong>«На Початковий екран»</strong>
+  </div>
+</div>
 
 <div id="install-banner">
   <p>📲 Встанови як додаток!</p>
@@ -586,6 +609,13 @@ document.getElementById('install-btn').addEventListener('click',async()=>{
 document.getElementById('install-close').addEventListener('click',()=>{
   document.getElementById('install-banner').classList.remove('show');
 });
+
+// iOS Install Banner
+const isIos=/iPad|iPhone|iPod/.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode:standalone)').matches||navigator.standalone;
+if(isIos&&!isStandalone&&!localStorage.getItem('kb_ios_dismiss')){
+  setTimeout(()=>document.getElementById('ios-banner').classList.add('show'),2000);
+}
 
 // Service Worker
 if('serviceWorker' in navigator){
