@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
+:root,.theme-peach{
   --bg:#FFF8F4;--bg2:#FEF0E8;--card2:#FAE8DC;
   --peach:#E8845A;--peach3:#F7C4A8;
   --muted:#C4906A;--text:#3D1F10;--text2:#7A4030;
@@ -24,6 +24,38 @@
   --bdr:rgba(232,132,90,0.18);--bdr2:rgba(232,132,90,0.4);
   --safe-top:env(safe-area-inset-top,0px);
   --safe-bot:env(safe-area-inset-bottom,0px);
+}
+.theme-rose{
+  --bg:#FFF5F7;--bg2:#FDE8ED;--card2:#F8D4DD;
+  --peach:#D4537E;--peach3:#ED93B1;
+  --muted:#A0687A;--text:#2E0F1E;--text2:#6B2040;
+  --brown:#993556;--rose:#D4537E;--rose2:#F0B8C0;
+  --gold:#B8457A;--gold2:#FDE8ED;
+  --bdr:rgba(212,83,126,0.18);--bdr2:rgba(212,83,126,0.4);
+}
+.theme-lavender{
+  --bg:#F6F3FF;--bg2:#EDE6FF;--card2:#DDD4F5;
+  --peach:#7C5CBF;--peach3:#B8A4E0;
+  --muted:#8A7AA0;--text:#1E1232;--text2:#4A3670;
+  --brown:#6B4FA0;--rose:#9B6DC4;--rose2:#D0C0F0;
+  --gold:#8B6FC0;--gold2:#EDE6FF;
+  --bdr:rgba(124,92,191,0.18);--bdr2:rgba(124,92,191,0.4);
+}
+.theme-mint{
+  --bg:#F0FAF6;--bg2:#DFF5EC;--card2:#C8EDDA;
+  --peach:#2D9E6E;--peach3:#7BCDA8;
+  --muted:#6A9B86;--text:#0C2E1E;--text2:#1E5A3C;
+  --brown:#1E7A50;--rose:#3DB87E;--rose2:#A8E0C4;
+  --gold:#2A8C60;--gold2:#DFF5EC;
+  --bdr:rgba(45,158,110,0.18);--bdr2:rgba(45,158,110,0.4);
+}
+.theme-dark{
+  --bg:#1A1614;--bg2:#2A2320;--card2:#3A302C;
+  --peach:#E8845A;--peach3:#8A5038;
+  --muted:#9A8070;--text:#F0E4DC;--text2:#C8A898;
+  --brown:#C87050;--rose:#D4697A;--rose2:#6A3040;
+  --gold:#C9A84C;--gold2:#3A3020;
+  --bdr:rgba(232,132,90,0.15);--bdr2:rgba(232,132,90,0.35);
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{
@@ -195,6 +227,15 @@ body{
 .ni.on{color:var(--peach)}
 .ni svg{width:22px;height:22px}
 .ni-lbl{font-size:0.52rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600}
+
+/* THEME PICKER */
+.theme-row{display:flex;gap:8px;padding:0.5rem 1rem;flex-wrap:wrap}
+.theme-dot{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:border-color 0.2s,transform 0.15s;flex-shrink:0}
+.theme-dot.active{border-color:var(--text);transform:scale(1.15)}
+.theme-dot:active{transform:scale(0.9)}
+.theme-dark .top-nav,.theme-dark .bottom-nav{background:rgba(26,22,20,0.97)}
+.theme-dark .admin-pin input,.theme-dark .adm-item-price,.theme-dark .f-inp,.theme-dark .f-sel{background:var(--bg2);color:var(--text)}
+.theme-dark .adm-log{background:var(--bg2)}
 
 /* ADMIN */
 .admin-pin{padding:2rem 1rem;text-align:center}
@@ -440,6 +481,16 @@ body{
     </div>
     <div class="admin-unlocked">
       <div id="adm-status" class="adm-status"></div>
+      <div class="adm-section">
+        <div class="adm-section-lbl">🎨 Колірна схема</div>
+        <div class="theme-row" id="theme-row">
+          <div class="theme-dot" style="background:#E8845A" data-theme="peach" title="Peach" onclick="setTheme('peach')"></div>
+          <div class="theme-dot" style="background:#D4537E" data-theme="rose" title="Rose" onclick="setTheme('rose')"></div>
+          <div class="theme-dot" style="background:#7C5CBF" data-theme="lavender" title="Lavender" onclick="setTheme('lavender')"></div>
+          <div class="theme-dot" style="background:#2D9E6E" data-theme="mint" title="Mint" onclick="setTheme('mint')"></div>
+          <div class="theme-dot" style="background:linear-gradient(135deg,#2A2320,#E8845A)" data-theme="dark" title="Dark" onclick="setTheme('dark')"></div>
+        </div>
+      </div>
       <div class="adm-section">
         <div class="adm-section-lbl">✂️ Послуги для нього</div>
         <div id="adm-him"></div>
@@ -715,6 +766,28 @@ function downloadCSV(filename,rows){
 }
 
 function todayStr(){return new Date().toISOString().split('T')[0]}
+
+// ===== THEMES =====
+const THEMES=['peach','rose','lavender','mint','dark'];
+function setTheme(t){
+  THEMES.forEach(th=>document.documentElement.classList.remove('theme-'+th));
+  document.documentElement.classList.add('theme-'+t);
+  localStorage.setItem('kb_theme',t);
+  document.querySelectorAll('.theme-dot').forEach(d=>{
+    d.classList.toggle('active',d.dataset.theme===t);
+  });
+  addLog('Зміна теми','Тема: '+t);
+  renderLogs();
+}
+function loadTheme(){
+  const t=localStorage.getItem('kb_theme')||'peach';
+  THEMES.forEach(th=>document.documentElement.classList.remove('theme-'+th));
+  if(t!=='peach') document.documentElement.classList.add('theme-'+t);
+  document.querySelectorAll('.theme-dot').forEach(d=>{
+    d.classList.toggle('active',d.dataset.theme===t);
+  });
+}
+loadTheme();
 
 applyPricesToUI();
 </script>
