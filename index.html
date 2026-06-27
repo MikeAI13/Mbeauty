@@ -66,17 +66,11 @@ body{
   font-family:'Montserrat',sans-serif;font-weight:300;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
   padding-bottom:calc(64px + var(--safe-bot));
-  max-width:480px;margin:0 auto;
-  position:relative;
-}
-@media(min-width:481px){
-  html{background:#1A1614}
-  body{box-shadow:0 0 40px rgba(0,0,0,0.3);min-height:100vh}
 }
 
 /* INSTALL BANNER */
 #install-banner{
-  display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:999;
+  display:none;position:fixed;top:0;left:0;right:0;z-index:999;
   background:var(--gold);padding:calc(var(--safe-top) + 0.6rem) 1rem 0.6rem;
   align-items:center;gap:0.8rem;
 }
@@ -87,7 +81,7 @@ body{
 
 /* TOP NAV */
 .top-nav{
-  position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;
+  position:fixed;top:0;left:0;right:0;z-index:100;
   background:rgba(255,248,244,0.97);
   border-bottom:1px solid var(--bdr);
   padding:calc(var(--safe-top) + 0.8rem) 1.2rem 0.8rem;
@@ -225,7 +219,7 @@ body{
 
 /* BOTTOM NAV */
 .bottom-nav{
-  position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
   background:rgba(255,248,244,0.97);
   border-top:1px solid var(--bdr);
   padding:0.5rem 0 calc(0.5rem + var(--safe-bot));
@@ -239,7 +233,7 @@ body{
 
 /* iOS INSTALL */
 #ios-banner{
-  display:none;position:fixed;bottom:calc(64px + var(--safe-bot) + 8px);left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:448px;z-index:200;
+  display:none;position:fixed;bottom:calc(64px + var(--safe-bot) + 8px);left:1rem;right:1rem;z-index:200;max-width:500px;margin:0 auto;
   background:#fff;border:1.5px solid var(--peach3);border-radius:14px;padding:1rem;
   box-shadow:0 4px 20px rgba(0,0,0,0.1);text-align:center;
 }
@@ -268,7 +262,6 @@ body{
 .theme-dot.active{border-color:var(--text);transform:scale(1.15)}
 .theme-dot:active{transform:scale(0.9)}
 .theme-dark .top-nav,.theme-dark .bottom-nav{background:rgba(26,22,20,0.97)}
-@media(min-width:481px){.theme-dark~body,.theme-dark body{box-shadow:0 0 40px rgba(232,132,90,0.15)}}
 .theme-dark .admin-pin input,.theme-dark .adm-item-price,.theme-dark .f-inp,.theme-dark .f-sel{background:var(--bg2);color:var(--text)}
 .theme-dark .adm-log{background:var(--bg2)}
 
@@ -296,6 +289,57 @@ body{
 .adm-log-empty{padding:1rem;text-align:center;font-size:0.68rem;color:var(--muted)}
 .adm-status{text-align:center;font-size:0.68rem;color:var(--peach);font-weight:600;padding:0.5rem;display:none}
 .adm-status.show{display:block}
+
+/* TABLET 768px+ */
+@media(min-width:768px){
+  .hero-title{font-size:5rem}
+  .hero-sub{font-size:0.75rem;letter-spacing:0.3em}
+  .hero{padding:3rem 2rem 2rem}
+  .parallel{grid-template-columns:1fr 1fr;max-width:900px;margin:0 auto}
+  .p-item{padding:1rem 1.2rem;min-height:85px}
+  .p-item-name{font-size:0.9rem}
+  .p-item-price{font-size:0.8rem}
+  .col-head{padding:0.9rem 1.2rem}
+  .col-head-txt{font-size:0.75rem}
+  .detail-item{padding:1rem 1.5rem}
+  .detail-name{font-size:0.95rem}
+  .detail-price{font-size:0.95rem}
+  .detail-desc{font-size:0.7rem}
+  .page-hdr{padding:1.5rem 1.5rem 1rem}
+  .page-hdr-title{font-size:1.8rem}
+  .cat-title-row{padding:0 1.5rem 1rem}
+  .cat-name{font-size:1.8rem}
+  .cat-back{padding:1.2rem 1.5rem 0.6rem}
+  .booking-wrap{max-width:500px;margin:0 auto;padding:0 1.5rem 2rem}
+  .special-option{margin:1.2rem 1.5rem;max-width:700px}
+  .ig-cta{margin:1rem 1.5rem;max-width:700px}
+  .contact-item{padding:1rem 1.5rem}
+  .map-box{margin:1rem 1.5rem}
+  .top-nav{padding:calc(var(--safe-top) + 1rem) 2rem 1rem}
+  .nav-brand{font-size:1.5rem}
+  .ni-lbl{font-size:0.58rem}
+  .ni svg{width:24px;height:24px}
+  .adm-section{padding:0.7rem 1.5rem}
+  .adm-log{margin:0 1.5rem 1.5rem}
+}
+
+/* DESKTOP 1024px+ */
+@media(min-width:1024px){
+  .hero-title{font-size:6rem}
+  .hero{padding:4rem 2rem 3rem}
+  .parallel{max-width:1000px}
+  .p-item{padding:1.2rem 1.5rem;min-height:95px}
+  .p-item-name{font-size:1rem}
+  .detail-item{padding:1.2rem 2rem;max-width:900px;margin-left:auto;margin-right:auto}
+  .booking-wrap{max-width:600px}
+  .special-option,.ig-cta{max-width:800px;margin-left:auto;margin-right:auto}
+  .contact-item{max-width:800px;margin-left:auto;margin-right:auto}
+  .map-box{max-width:800px;margin-left:auto;margin-right:auto}
+  .top-nav{padding:calc(var(--safe-top) + 1rem) 3rem 1rem}
+  .nav-brand{font-size:1.6rem}
+  .bottom-nav{justify-content:center;gap:0.5rem}
+  .ni{flex:none;padding:0.25rem 1.5rem}
+}
 
 @media(prefers-reduced-motion:reduce){*{transition-duration:0.01ms !important}}
 </style>
