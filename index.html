@@ -196,6 +196,31 @@ body{
 .ni svg{width:22px;height:22px}
 .ni-lbl{font-size:0.52rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600}
 
+/* ADMIN */
+.admin-pin{padding:2rem 1rem;text-align:center}
+.admin-pin input{width:160px;text-align:center;font-size:1.5rem;letter-spacing:0.5em;background:#fff;border:2px solid var(--bdr2);border-radius:8px;padding:0.6rem;font-family:'Montserrat',sans-serif;outline:none}
+.admin-pin input:focus{border-color:var(--peach)}
+.admin-pin button{display:block;margin:0.8rem auto 0;background:var(--peach);color:#fff;border:none;border-radius:50px;padding:0.6rem 2rem;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif}
+.admin-locked{display:block}.admin-unlocked{display:none}
+.admin-ok .admin-locked{display:none}
+.admin-ok .admin-unlocked{display:block}
+.adm-section{padding:0.5rem 1rem}
+.adm-section-lbl{font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:0.4rem}
+.adm-item{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0;border-bottom:1px solid var(--bdr)}
+.adm-item-name{flex:1;font-size:0.78rem;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--text)}
+.adm-item-price{width:90px;text-align:right;font-size:0.78rem;background:#fff;border:1.5px solid var(--bdr2);border-radius:6px;padding:0.4rem 0.5rem;font-family:'Montserrat',sans-serif;outline:none;color:var(--peach);font-weight:600}
+.adm-item-price:focus{border-color:var(--peach)}
+.adm-save{display:block;margin:1rem auto;background:var(--peach);color:#fff;border:none;border-radius:50px;padding:0.7rem 2.5rem;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif}
+.adm-save:active{transform:scale(0.97)}
+.adm-export{display:block;margin:0.5rem auto 1rem;background:var(--brown);color:#fff;border:none;border-radius:50px;padding:0.7rem 2.5rem;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif}
+.adm-log{max-height:300px;overflow-y:auto;margin:0 1rem 1rem;background:#fff;border:1px solid var(--bdr);border-radius:8px}
+.adm-log-item{padding:0.45rem 0.7rem;border-bottom:1px solid var(--bdr);font-size:0.65rem;color:var(--text2);line-height:1.5}
+.adm-log-item:last-child{border-bottom:none}
+.adm-log-date{color:var(--muted);font-size:0.58rem}
+.adm-log-empty{padding:1rem;text-align:center;font-size:0.68rem;color:var(--muted)}
+.adm-status{text-align:center;font-size:0.68rem;color:var(--peach);font-weight:600;padding:0.5rem;display:none}
+.adm-status.show{display:block}
+
 @media(prefers-reduced-motion:reduce){*{transition-duration:0.01ms !important}}
 </style>
 </head>
@@ -398,6 +423,42 @@ body{
   </div>
 </div>
 
+<!-- ADMIN -->
+<div class="page" id="p-admin">
+  <div class="page-hdr">
+    <span class="page-hdr-lbl">Управління</span>
+    <div class="page-hdr-title">Адмін <em>панель</em></div>
+  </div>
+  <div id="admin-wrap">
+    <div class="admin-locked">
+      <div class="admin-pin">
+        <p style="font-size:0.72rem;color:var(--muted);margin-bottom:0.8rem">Введіть PIN для редагування</p>
+        <input type="password" id="admin-pin" maxlength="4" inputmode="numeric" placeholder="••••">
+        <button onclick="adminLogin()">Увійти</button>
+        <p id="pin-err" style="color:var(--rose);font-size:0.65rem;margin-top:0.5rem;display:none">Невірний PIN</p>
+      </div>
+    </div>
+    <div class="admin-unlocked">
+      <div id="adm-status" class="adm-status"></div>
+      <div class="adm-section">
+        <div class="adm-section-lbl">✂️ Послуги для нього</div>
+        <div id="adm-him"></div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-section-lbl">💅 Послуги для неї</div>
+        <div id="adm-her"></div>
+      </div>
+      <button class="adm-save" onclick="adminSave()">💾 Зберегти ціни</button>
+      <button class="adm-export" onclick="adminExport()">📊 Експорт CSV</button>
+      <div class="adm-section" style="margin-top:0.5rem">
+        <div class="adm-section-lbl">📋 Журнал операцій (3 місяці)</div>
+      </div>
+      <div class="adm-log" id="adm-log"></div>
+      <button class="adm-export" style="background:var(--muted)" onclick="adminExportLog()">📋 Експорт журналу CSV</button>
+    </div>
+  </div>
+</div>
+
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav" role="navigation">
   <a href="#" class="ni on" id="ni-home" onclick="gp('home');return false;">
@@ -420,10 +481,14 @@ body{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
     <span class="ni-lbl">Контакти</span>
   </a>
+  <a href="#" class="ni" id="ni-admin" onclick="gp('admin');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+    <span class="ni-lbl">Адмін</span>
+  </a>
 </nav>
 
 <script>
-const allPages=['home','him','her','special','booking','contact'];
+const allPages=['home','him','her','special','booking','contact','admin'];
 
 function gp(n){
   window.scrollTo(0,0);
@@ -475,6 +540,183 @@ document.getElementById('install-close').addEventListener('click',()=>{
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
+
+// ===== ADMIN =====
+const ADMIN_PIN='1234';
+const SERVICES={
+  him:[
+    {id:'h1',name:'Чоловіча стрижка',price:280},
+    {id:'h2',name:'Фейд',price:350},
+    {id:'h3',name:'Андеркат',price:320},
+    {id:'h4',name:'Корекція бороди',price:180},
+    {id:'h5',name:'Стрижка + борода',price:380},
+    {id:'h6',name:'Бритво гоління',price:250},
+    {id:'h7',name:'Укладка + стайлінг',price:150},
+    {id:'h8',name:'Дитяча стрижка',price:200},
+    {id:'h9',name:'VIP пакет',price:600}
+  ],
+  her:[
+    {id:'s1',name:'Жіноча стрижка',price:320},
+    {id:'s2',name:'Каре',price:380},
+    {id:'s3',name:'Кінчики',price:220},
+    {id:'s4',name:'Гель-лак манікюр',price:450},
+    {id:'s5',name:'Педикюр апаратний',price:550},
+    {id:'s6',name:'Нарощування вій',price:550},
+    {id:'s7',name:'Ламінування брів',price:350},
+    {id:'s8',name:'Макіяж вечірній',price:700},
+    {id:'s9',name:'Манікюр + Педикюр',price:800}
+  ]
+};
+
+function getSavedPrices(){
+  try{return JSON.parse(localStorage.getItem('kb_prices'))||{}}catch(e){return{}}
+}
+function getPrice(id,def){
+  const saved=getSavedPrices();
+  return saved[id]!==undefined?saved[id]:def;
+}
+function getLogs(){
+  try{
+    let logs=JSON.parse(localStorage.getItem('kb_logs'))||[];
+    const threeMonths=Date.now()-90*24*60*60*1000;
+    logs=logs.filter(l=>l.ts>threeMonths);
+    localStorage.setItem('kb_logs',JSON.stringify(logs));
+    return logs;
+  }catch(e){return[]}
+}
+function addLog(action,detail){
+  const logs=getLogs();
+  logs.push({ts:Date.now(),action,detail,date:new Date().toLocaleString('uk-UA')});
+  localStorage.setItem('kb_logs',JSON.stringify(logs));
+}
+
+function applyPricesToUI(){
+  const allItems=document.querySelectorAll('#p-him .detail-price, #p-her .detail-price');
+  const himServices=SERVICES.him;
+  const herServices=SERVICES.her;
+  document.querySelectorAll('#p-him .detail-item').forEach((el,i)=>{
+    if(himServices[i]){
+      const p=getPrice(himServices[i].id,himServices[i].price);
+      el.querySelector('.detail-price').textContent='від '+p+' ₴';
+    }
+  });
+  document.querySelectorAll('#p-her .detail-item').forEach((el,i)=>{
+    if(herServices[i]){
+      const p=getPrice(herServices[i].id,herServices[i].price);
+      el.querySelector('.detail-price').textContent='від '+p+' ₴';
+    }
+  });
+  document.querySelectorAll('#p-home .p-item.him').forEach((el,i)=>{
+    if(himServices[i]){
+      const p=getPrice(himServices[i].id,himServices[i].price);
+      const priceEl=el.querySelector('.p-item-price');
+      if(priceEl) priceEl.textContent='від '+p+' ₴';
+    }
+  });
+  document.querySelectorAll('#p-home .p-item:not(.him)').forEach((el,i)=>{
+    if(herServices[i]){
+      const p=getPrice(herServices[i].id,herServices[i].price);
+      const priceEl=el.querySelector('.p-item-price');
+      if(priceEl) priceEl.textContent='від '+p+' ₴';
+    }
+  });
+}
+
+function renderAdminPrices(){
+  ['him','her'].forEach(cat=>{
+    const wrap=document.getElementById('adm-'+cat);
+    wrap.innerHTML='';
+    SERVICES[cat].forEach(s=>{
+      const p=getPrice(s.id,s.price);
+      const d=document.createElement('div');
+      d.className='adm-item';
+      d.innerHTML='<span class="adm-item-name">'+s.name+'</span><input class="adm-item-price" type="number" data-id="'+s.id+'" data-old="'+p+'" value="'+p+'" min="0" step="10"> <span style="font-size:0.7rem;color:var(--muted)">₴</span>';
+      wrap.appendChild(d);
+    });
+  });
+}
+
+function renderLogs(){
+  const logs=getLogs().reverse();
+  const wrap=document.getElementById('adm-log');
+  if(!logs.length){wrap.innerHTML='<div class="adm-log-empty">Поки немає записів</div>';return;}
+  wrap.innerHTML=logs.map(l=>'<div class="adm-log-item"><span class="adm-log-date">'+l.date+'</span><br>'+l.action+': '+l.detail+'</div>').join('');
+}
+
+function adminLogin(){
+  const pin=document.getElementById('admin-pin').value;
+  if(pin===ADMIN_PIN){
+    document.getElementById('admin-wrap').classList.add('admin-ok');
+    document.getElementById('pin-err').style.display='none';
+    renderAdminPrices();
+    renderLogs();
+    addLog('Вхід','Адміністратор увійшов');
+  }else{
+    document.getElementById('pin-err').style.display='block';
+  }
+}
+
+function adminSave(){
+  const saved=getSavedPrices();
+  const inputs=document.querySelectorAll('.adm-item-price');
+  const changes=[];
+  inputs.forEach(inp=>{
+    const id=inp.dataset.id;
+    const oldVal=parseInt(inp.dataset.old);
+    const newVal=parseInt(inp.value)||0;
+    saved[id]=newVal;
+    if(oldVal!==newVal){
+      const name=inp.parentElement.querySelector('.adm-item-name').textContent;
+      changes.push(name+': '+oldVal+'₴ → '+newVal+'₴');
+    }
+  });
+  localStorage.setItem('kb_prices',JSON.stringify(saved));
+  if(changes.length){
+    changes.forEach(c=>addLog('Зміна ціни',c));
+  }else{
+    addLog('Збереження','Без змін');
+  }
+  applyPricesToUI();
+  renderAdminPrices();
+  renderLogs();
+  const st=document.getElementById('adm-status');
+  st.textContent='✓ Збережено'+(changes.length?' ('+changes.length+' змін)':'');
+  st.classList.add('show');
+  setTimeout(()=>st.classList.remove('show'),3000);
+}
+
+function adminExport(){
+  const rows=[['Категорія','Послуга','Ціна (₴)']];
+  SERVICES.him.forEach(s=>rows.push(['Для нього',s.name,getPrice(s.id,s.price)]));
+  SERVICES.her.forEach(s=>rows.push(['Для неї',s.name,getPrice(s.id,s.price)]));
+  downloadCSV('KlippaBeauTy_Prices_'+todayStr()+'.csv',rows);
+  addLog('Експорт','Прайс-лист CSV');
+  renderLogs();
+}
+
+function adminExportLog(){
+  const logs=getLogs();
+  const rows=[['Дата','Операція','Деталі']];
+  logs.forEach(l=>rows.push([l.date,l.action,l.detail]));
+  downloadCSV('KlippaBeauTy_Log_'+todayStr()+'.csv',rows);
+  addLog('Експорт','Журнал операцій CSV');
+  renderLogs();
+}
+
+function downloadCSV(filename,rows){
+  const bom='﻿';
+  const csv=bom+rows.map(r=>r.map(c=>'"'+(c+'').replace(/"/g,'""')+'"').join(';')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function todayStr(){return new Date().toISOString().split('T')[0]}
+
+applyPricesToUI();
 </script>
 </body>
 </html>
