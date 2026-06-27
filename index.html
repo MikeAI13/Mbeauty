@@ -56,22 +56,25 @@
     <div class="hero-sub">Beauty Club · OlesIya SaloN · Київ</div>
   </section>
 
-  <div class="parallel">
-    <div class="col-head him"><span class="col-head-ico">✂️</span><span class="col-head-txt">Для нього</span></div>
-    <div class="col-head her"><span class="col-head-ico">💅</span><span class="col-head-txt">Для неї</span></div>
-    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">✂️</span><div class="p-item-name">Чоловіча стрижка</div><div class="p-item-price">від 280 ₴</div><div class="p-item-arr">всі стрижки →</div></div>
-    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">💇</span><div class="p-item-name">Жіноча стрижка</div><div class="p-item-price">від 320 ₴</div><div class="p-item-arr">всі стрижки →</div></div>
-    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">🪄</span><div class="p-item-name">Фейд</div><div class="p-item-price">від 350 ₴</div><div class="p-item-arr">детальніше →</div></div>
-    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">💆</span><div class="p-item-name">Каре</div><div class="p-item-price">від 380 ₴</div><div class="p-item-arr">детальніше →</div></div>
-    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">🧔</span><div class="p-item-name">Борода + корекція</div><div class="p-item-price">від 180 ₴</div><div class="p-item-arr">детальніше →</div></div>
-    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">✂️</span><div class="p-item-name">Кінчики</div><div class="p-item-price">від 220 ₴</div><div class="p-item-arr">детальніше →</div></div>
-    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">🪒</span><div class="p-item-name">Бритво гоління</div><div class="p-item-price">від 250 ₴</div><div class="p-item-arr">детальніше →</div></div>
-    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">✨</span><div class="p-item-name">Гель-лак манікюр</div><div class="p-item-price">від 450 ₴</div><div class="p-item-arr">детальніше →</div></div>
-    <div class="col-more him" onclick="gp('him')"><span class="col-more-txt">Всі послуги</span><span class="col-more-arr">›</span></div>
-    <div class="col-more her" onclick="gp('her')"><span class="col-more-txt">Всі послуги</span><span class="col-more-arr">›</span></div>
+  <!-- CALCULATOR -->
+  <div class="calc-wrap">
+    <div class="calc-header">
+      <span class="calc-title">Калькулятор послуг</span>
+      <div class="calc-toggle">
+        <button class="calc-tab active" id="ct-him" onclick="calcTab('him')">✂️ Він</button>
+        <button class="calc-tab" id="ct-her" onclick="calcTab('her')">💅 Вона</button>
+      </div>
+    </div>
+    <div id="calc-list"></div>
+    <div class="calc-total" id="calc-total">
+      <span class="calc-total-lbl">Разом:</span>
+      <span class="calc-total-sum" id="calc-sum">0 ₴</span>
+    </div>
+    <a href="https://instagram.com/klippa_beauty_club" target="_blank" class="calc-book">📸 Записатись через Instagram</a>
   </div>
 
-  <div class="special-option" onclick="gp('special')">
+  <!-- SPECIAL -->
+  <div class="special-option" onclick="gp('services')">
     <div class="special-top">
       <span class="special-ico">✨</span>
       <div>
@@ -80,10 +83,6 @@
         <div class="special-sub">Весілля, свято, фотосесія — напишіть нам</div>
       </div>
       <span class="special-arr">›</span>
-    </div>
-    <div class="special-bottom">
-      <span class="special-bottom-txt">Індивідуальний підхід</span>
-      <button class="special-bottom-btn">Зв'язатись</button>
     </div>
   </div>
 
@@ -95,125 +94,41 @@
   </a>
 </div>
 
-<!-- FOR HIM -->
-<div class="page" id="p-him">
-  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
-  <div class="cat-title-row him"><div class="cat-icon">✂️</div><div class="cat-name him">Для <em>нього</em></div></div>
-  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Чоловіча стрижка</div><div class="detail-desc">Класична, будь-який стиль.</div></div><div class="detail-price">від 280 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🪄</div><div><div class="detail-name">Фейд</div><div class="detail-desc">Skin fade, drop fade, high fade.</div></div><div class="detail-price">від 350 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">⚡</div><div><div class="detail-name">Андеркат</div><div class="detail-desc">Контрастна з виголеними скронями.</div></div><div class="detail-price">від 320 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🧔</div><div><div class="detail-name">Корекція бороди</div><div class="detail-desc">Моделювання контуру і форми.</div></div><div class="detail-price">від 180 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💈</div><div><div class="detail-name">Стрижка + борода</div><div class="detail-desc">Комплекс зі знижкою.</div></div><div class="detail-price">від 380 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🪒</div><div><div class="detail-name">Бритво гоління</div><div class="detail-desc">Класичне + гарячий рушник + бальзам.</div></div><div class="detail-price">від 250 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💧</div><div><div class="detail-name">Укладка + стайлінг</div><div class="detail-desc">Фен, воск, помада.</div></div><div class="detail-price">від 150 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">👦</div><div><div class="detail-name">Дитяча стрижка</div><div class="detail-desc">До 12 років, швидко і комфортно.</div></div><div class="detail-price">від 200 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">👑</div><div><div class="detail-name">VIP пакет</div><div class="detail-desc">Стрижка + борода + гоління + укладка.</div></div><div class="detail-price">від 600 ₴</div></div>
-</div>
-
-<!-- FOR HER -->
-<div class="page" id="p-her">
-  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
-  <div class="cat-title-row her"><div class="cat-icon">💅</div><div class="cat-name her">Для <em>неї</em></div></div>
-  <div class="detail-item"><div class="detail-ico">💇</div><div><div class="detail-name">Жіноча стрижка</div><div class="detail-desc">Будь-яка довжина, будь-який стиль.</div></div><div class="detail-price">від 320 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💆</div><div><div class="detail-name">Каре</div><div class="detail-desc">Класичне, видовжене, з чубком.</div></div><div class="detail-price">від 380 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Кінчики</div><div class="detail-desc">Освіження форми без втрати довжини.</div></div><div class="detail-price">від 220 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">✨</div><div><div class="detail-name">Гель-лак манікюр</div><div class="detail-desc">Зміцнення, покриття, дизайн. До 4 тижнів.</div></div><div class="detail-price">від 450 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💅</div><div><div class="detail-name">Педикюр апаратний</div><div class="detail-desc">Апаратна обробка + гель-лак покриття.</div></div><div class="detail-price">від 550 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">👁️</div><div><div class="detail-name">Нарощування вій</div><div class="detail-desc">2D–6D техніки. Натуральний або об'ємний.</div></div><div class="detail-price">від 550 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🌸</div><div><div class="detail-name">Ламінування брів</div><div class="detail-desc">Укладка та фіксація до 6 тижнів.</div></div><div class="detail-price">від 350 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💄</div><div><div class="detail-name">Макіяж вечірній</div><div class="detail-desc">Стійкий макіяж для особливих подій.</div></div><div class="detail-price">від 700 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💎</div><div><div class="detail-name">Манікюр + Педикюр</div><div class="detail-desc">Комплекс зі знижкою −20%.</div></div><div class="detail-price">від 800 ₴</div></div>
-</div>
-
-<!-- SPECIAL -->
-<div class="page" id="p-special">
-  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
-  <div class="special-page-header">
-    <div class="special-page-ico">✨</div>
-    <div class="special-page-lbl">Особливий випадок</div>
-    <div class="special-page-title">Плануєте щось <em>особливе?</em></div>
-    <div class="special-page-sub">Напишіть нам — і ми підберемо саме те, що потрібно</div>
-  </div>
-  <div class="special-msg">
-    <p>«Весілля, день народження, випускний, фотосесія або просто хочете виглядати ідеально — розкажіть нам про свій день, і ми самі запропонуємо найкраще рішення.»</p>
-    <div class="special-msg-sign">— Олеся та команда KlippaBeauTy</div>
-  </div>
-  <div class="sci-section-lbl">Зв'язатись з нами</div>
-  <a href="https://instagram.com/klippa_beauty_club" class="sci-item">
-    <div class="sci-ico ig">📸</div>
-    <div><div class="sci-lbl">Instagram — найшвидше</div><div class="sci-val">@klippa_beauty_club</div></div>
-    <span class="sci-arr">›</span>
-  </a>
-  <a href="https://t.me/klippabeauty" class="sci-item">
-    <div class="sci-ico tg">✈️</div>
-    <div><div class="sci-lbl">Telegram</div><div class="sci-val">@klippabeauty</div></div>
-    <span class="sci-arr">›</span>
-  </a>
-  <a href="tel:+380000000000" class="sci-item">
-    <div class="sci-ico ph">📞</div>
-    <div><div class="sci-lbl">Телефон</div><div class="sci-val">+38 (000) 000-00-00</div></div>
-    <span class="sci-arr">›</span>
-  </a>
-  <div class="reply-box"><p>Відповідаємо протягом <strong>1 години</strong> у робочий час<br><span style="color:var(--muted)">Пн–Сб: 09:00–20:00</span></p></div>
-</div>
-
-<!-- BOOKING -->
-<div class="page" id="p-booking">
+<!-- SERVICES (him + her combined) -->
+<div class="page" id="p-services">
   <div class="page-hdr">
-    <span class="page-hdr-lbl">Онлайн запис</span>
-    <div class="page-hdr-title">Записатись <em>до майстра</em></div>
+    <span class="page-hdr-lbl">Послуги</span>
+    <div class="page-hdr-title">Наші <em>послуги</em></div>
   </div>
-  <div class="booking-wrap">
-    <span class="f-lbl">Для кого запис?</span>
-    <div class="mode-row">
-      <div class="mbtn s-him" id="mb-b" onclick="sm('b')">✂️ Для мене</div>
-      <div class="mbtn" id="mb-g" onclick="sm('g')">💅 Для неї</div>
-    </div>
-    <span class="f-lbl">Ім'я</span>
-    <input class="f-inp" type="text" placeholder="Як вас звати?" autocomplete="given-name">
-    <span class="f-lbl">Телефон</span>
-    <input class="f-inp" type="tel" placeholder="+38 (0__) ___-__-__" autocomplete="tel">
-    <span class="f-lbl">Послуга</span>
-    <select class="f-sel">
-      <option disabled selected>Оберіть послугу...</option>
-      <optgroup label="✂️ Для нього">
-        <option>Чоловіча стрижка — від 280 ₴</option>
-        <option>Фейд — від 350 ₴</option>
-        <option>Андеркат — від 320 ₴</option>
-        <option>Стрижка + борода — від 380 ₴</option>
-        <option>Корекція бороди — від 180 ₴</option>
-        <option>Бритво гоління — від 250 ₴</option>
-        <option>VIP пакет — від 600 ₴</option>
-      </optgroup>
-      <optgroup label="💅 Для неї">
-        <option>Жіноча стрижка — від 320 ₴</option>
-        <option>Каре — від 380 ₴</option>
-        <option>Кінчики — від 220 ₴</option>
-        <option>Гель-лак манікюр — від 450 ₴</option>
-        <option>Педикюр — від 550 ₴</option>
-        <option>Нарощування вій — від 550 ₴</option>
-        <option>Ламінування брів — від 350 ₴</option>
-        <option>Макіяж — від 700 ₴</option>
-      </optgroup>
-    </select>
-    <div class="date-time-row">
-      <div>
-        <span class="f-lbl" style="margin-top:0">Дата</span>
-        <input class="f-inp" type="date" id="f-date">
-      </div>
-      <div>
-        <span class="f-lbl" style="margin-top:0">Час</span>
-        <select class="f-sel">
-          <option disabled selected>--:--</option>
-          <option>09:00</option><option>10:00</option><option>11:00</option>
-          <option>12:00</option><option>13:00</option><option>14:00</option>
-          <option>15:00</option><option>16:00</option><option>17:00</option>
-          <option>18:00</option><option>19:00</option>
-        </select>
-      </div>
-    </div>
-    <div class="note-box">🔧 Кнопка «Надіслати» з'явиться після тестування</div>
-    <a href="https://instagram.com/klippa_beauty_club" class="ig-btn">📸 Записатись через Instagram</a>
+  <div class="svc-toggle">
+    <button class="svc-tab active" id="st-him" onclick="svcTab('him')">✂️ Для нього</button>
+    <button class="svc-tab" id="st-her" onclick="svcTab('her')">💅 Для неї</button>
+  </div>
+
+  <div id="svc-him">
+    <div class="cat-title-row him"><div class="cat-icon">✂️</div><div class="cat-name him">Для <em>нього</em></div></div>
+    <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Чоловіча стрижка</div><div class="detail-desc">Класична, будь-який стиль.</div></div><div class="detail-price">від 280 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">🪄</div><div><div class="detail-name">Фейд</div><div class="detail-desc">Skin fade, drop fade, high fade.</div></div><div class="detail-price">від 350 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">⚡</div><div><div class="detail-name">Андеркат</div><div class="detail-desc">Контрастна з виголеними скронями.</div></div><div class="detail-price">від 320 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">🧔</div><div><div class="detail-name">Корекція бороди</div><div class="detail-desc">Моделювання контуру і форми.</div></div><div class="detail-price">від 180 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">💈</div><div><div class="detail-name">Стрижка + борода</div><div class="detail-desc">Комплекс зі знижкою.</div></div><div class="detail-price">від 380 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">🪒</div><div><div class="detail-name">Бритво гоління</div><div class="detail-desc">Класичне + гарячий рушник + бальзам.</div></div><div class="detail-price">від 250 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">💧</div><div><div class="detail-name">Укладка + стайлінг</div><div class="detail-desc">Фен, воск, помада.</div></div><div class="detail-price">від 150 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">👦</div><div><div class="detail-name">Дитяча стрижка</div><div class="detail-desc">До 12 років, швидко і комфортно.</div></div><div class="detail-price">від 200 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">👑</div><div><div class="detail-name">VIP пакет</div><div class="detail-desc">Стрижка + борода + гоління + укладка.</div></div><div class="detail-price">від 600 ₴</div></div>
+  </div>
+
+  <div id="svc-her" style="display:none">
+    <div class="cat-title-row her"><div class="cat-icon">💅</div><div class="cat-name her">Для <em>неї</em></div></div>
+    <div class="detail-item"><div class="detail-ico">💇</div><div><div class="detail-name">Жіноча стрижка</div><div class="detail-desc">Будь-яка довжина, будь-який стиль.</div></div><div class="detail-price">від 320 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">💆</div><div><div class="detail-name">Каре</div><div class="detail-desc">Класичне, видовжене, з чубком.</div></div><div class="detail-price">від 380 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Кінчики</div><div class="detail-desc">Освіження форми без втрати довжини.</div></div><div class="detail-price">від 220 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">✨</div><div><div class="detail-name">Гель-лак манікюр</div><div class="detail-desc">Зміцнення, покриття, дизайн. До 4 тижнів.</div></div><div class="detail-price">від 450 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">💅</div><div><div class="detail-name">Педикюр апаратний</div><div class="detail-desc">Апаратна обробка + гель-лак покриття.</div></div><div class="detail-price">від 550 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">👁️</div><div><div class="detail-name">Нарощування вій</div><div class="detail-desc">2D–6D техніки. Натуральний або об'ємний.</div></div><div class="detail-price">від 550 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">🌸</div><div><div class="detail-name">Ламінування брів</div><div class="detail-desc">Укладка та фіксація до 6 тижнів.</div></div><div class="detail-price">від 350 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">💄</div><div><div class="detail-name">Макіяж вечірній</div><div class="detail-desc">Стійкий макіяж для особливих подій.</div></div><div class="detail-price">від 700 ₴</div></div>
+    <div class="detail-item"><div class="detail-ico">💎</div><div><div class="detail-name">Манікюр + Педикюр</div><div class="detail-desc">Комплекс зі знижкою −20%.</div></div><div class="detail-price">від 800 ₴</div></div>
   </div>
 </div>
 
@@ -230,40 +145,6 @@
   <a href="https://www.google.com/maps/search/%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B8+%D0%A2%D0%B8%D1%85%D0%BE%D0%B3%D0%BE+87+%D0%9F%D0%B5%D1%80%D1%83%D0%BA%D0%B0%D1%80%D0%BD%D1%8F" target="_blank" class="contact-item"><div class="cico">📍</div><div><div class="clbl">Адреса — відкрити на карті</div><div class="cval">вул. Олекси Тихого 87, Перукарня</div></div><span class="carw">›</span></a>
   <div class="map-box">
     <iframe src="https://www.google.com/maps?q=%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B8+%D0%A2%D0%B8%D1%85%D0%BE%D0%B3%D0%BE+87+%D0%9F%D0%B5%D1%80%D1%83%D0%BA%D0%B0%D1%80%D0%BD%D1%8F&output=embed" width="100%" height="220" style="border:0;border-radius:12px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</div>
-
-<!-- PRICES -->
-<div class="page" id="p-prices">
-  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
-  <div class="page-hdr">
-    <span class="page-hdr-lbl">Шулявка · Київ</span>
-    <div class="page-hdr-title">Актуальні <em>ціни</em></div>
-  </div>
-  <div class="prices-location">📍 <strong>вул. Олекси Тихого 87</strong> · район Шулявка</div>
-  <div class="cat-title-row him" style="margin-top:0.5rem"><div class="cat-icon">✂️</div><div class="cat-name him">Для <em>нього</em></div></div>
-  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Чоловіча стрижка</div><div class="detail-desc">Класична, будь-який стиль.</div></div><div class="detail-price pr-h1">від 280 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🪄</div><div><div class="detail-name">Фейд</div><div class="detail-desc">Skin fade, drop fade, high fade.</div></div><div class="detail-price pr-h2">від 350 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">⚡</div><div><div class="detail-name">Андеркат</div><div class="detail-desc">Контрастна з виголеними скронями.</div></div><div class="detail-price pr-h3">від 320 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🧔</div><div><div class="detail-name">Корекція бороди</div><div class="detail-desc">Моделювання контуру і форми.</div></div><div class="detail-price pr-h4">від 180 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💈</div><div><div class="detail-name">Стрижка + борода</div><div class="detail-desc">Комплекс зі знижкою.</div></div><div class="detail-price pr-h5">від 380 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🪒</div><div><div class="detail-name">Бритво гоління</div><div class="detail-desc">Класичне + гарячий рушник + бальзам.</div></div><div class="detail-price pr-h6">від 250 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💧</div><div><div class="detail-name">Укладка + стайлінг</div><div class="detail-desc">Фен, воск, помада.</div></div><div class="detail-price pr-h7">від 150 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">👦</div><div><div class="detail-name">Дитяча стрижка</div><div class="detail-desc">До 12 років, швидко і комфортно.</div></div><div class="detail-price pr-h8">від 200 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">👑</div><div><div class="detail-name">VIP пакет</div><div class="detail-desc">Стрижка + борода + гоління + укладка.</div></div><div class="detail-price pr-h9">від 600 ₴</div></div>
-  <div class="cat-title-row her" style="margin-top:0.8rem"><div class="cat-icon">💅</div><div class="cat-name her">Для <em>неї</em></div></div>
-  <div class="detail-item"><div class="detail-ico">💇</div><div><div class="detail-name">Жіноча стрижка</div><div class="detail-desc">Будь-яка довжина, будь-який стиль.</div></div><div class="detail-price pr-s1">від 320 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💆</div><div><div class="detail-name">Каре</div><div class="detail-desc">Класичне, видовжене, з чубком.</div></div><div class="detail-price pr-s2">від 380 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Кінчики</div><div class="detail-desc">Освіження форми без втрати довжини.</div></div><div class="detail-price pr-s3">від 220 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">✨</div><div><div class="detail-name">Гель-лак манікюр</div><div class="detail-desc">Зміцнення, покриття, дизайн. До 4 тижнів.</div></div><div class="detail-price pr-s4">від 450 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💅</div><div><div class="detail-name">Педикюр апаратний</div><div class="detail-desc">Апаратна обробка + гель-лак покриття.</div></div><div class="detail-price pr-s5">від 550 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">👁️</div><div><div class="detail-name">Нарощування вій</div><div class="detail-desc">2D–6D техніки. Натуральний або об'ємний.</div></div><div class="detail-price pr-s6">від 550 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">🌸</div><div><div class="detail-name">Ламінування брів</div><div class="detail-desc">Укладка та фіксація до 6 тижнів.</div></div><div class="detail-price pr-s7">від 350 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💄</div><div><div class="detail-name">Макіяж вечірній</div><div class="detail-desc">Стійкий макіяж для особливих подій.</div></div><div class="detail-price pr-s8">від 700 ₴</div></div>
-  <div class="detail-item"><div class="detail-ico">💎</div><div><div class="detail-name">Манікюр + Педикюр</div><div class="detail-desc">Комплекс зі знижкою −20%.</div></div><div class="detail-price pr-s9">від 800 ₴</div></div>
-  <div class="prices-updated" id="prices-updated">Оновлено: сьогодні</div>
-  <div class="prices-cta">
-    <p>📸 Записатись або уточнити ціну —<br><strong><a href="https://instagram.com/klippa_beauty_club" target="_blank" style="color:var(--peach);text-decoration:none">@klippa_beauty_club</a></strong></p>
   </div>
 </div>
 
@@ -313,23 +194,15 @@
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- BOTTOM NAV (4 tabs) -->
 <nav class="bottom-nav" role="navigation">
   <a href="#" class="ni on" id="ni-home" onclick="gp('home');return false;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     <span class="ni-lbl">Головна</span>
   </a>
-  <a href="#" class="ni" id="ni-him" onclick="gp('him');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
-    <span class="ni-lbl">Для нього</span>
-  </a>
-  <a href="#" class="ni" id="ni-her" onclick="gp('her');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="5"/><path d="M3 20c0-4 4-7 9-7s9 3 9 7"/></svg>
-    <span class="ni-lbl">Для неї</span>
-  </a>
-  <a href="#" class="ni" id="ni-special" onclick="gp('special');return false;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    <span class="ni-lbl">Особливе</span>
+  <a href="#" class="ni" id="ni-services" onclick="gp('services');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+    <span class="ni-lbl">Послуги</span>
   </a>
   <a href="#" class="ni" id="ni-contact" onclick="gp('contact');return false;">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>

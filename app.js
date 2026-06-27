@@ -1,5 +1,5 @@
 // === NAVIGATION ===
-const allPages=['home','him','her','special','booking','contact','prices','admin'];
+const allPages=['home','services','contact','admin'];
 
 function gp(n){
   window.scrollTo(0,0);
@@ -116,42 +116,17 @@ function addLog(action,detail){
 function applyPricesToUI(){
   const himServices=SERVICES.him;
   const herServices=SERVICES.her;
-  document.querySelectorAll('#p-him .detail-item').forEach((el,i)=>{
+  document.querySelectorAll('#svc-him .detail-item').forEach((el,i)=>{
     if(himServices[i]){
-      const p=getPrice(himServices[i].id,himServices[i].price);
-      el.querySelector('.detail-price').textContent='від '+p+' ₴';
+      el.querySelector('.detail-price').textContent='від '+getPrice(himServices[i].id,himServices[i].price)+' ₴';
     }
   });
-  document.querySelectorAll('#p-her .detail-item').forEach((el,i)=>{
+  document.querySelectorAll('#svc-her .detail-item').forEach((el,i)=>{
     if(herServices[i]){
-      const p=getPrice(herServices[i].id,herServices[i].price);
-      el.querySelector('.detail-price').textContent='від '+p+' ₴';
+      el.querySelector('.detail-price').textContent='від '+getPrice(herServices[i].id,herServices[i].price)+' ₴';
     }
   });
-  document.querySelectorAll('#p-home .p-item.him').forEach((el,i)=>{
-    if(himServices[i]){
-      const p=getPrice(himServices[i].id,himServices[i].price);
-      const priceEl=el.querySelector('.p-item-price');
-      if(priceEl) priceEl.textContent='від '+p+' ₴';
-    }
-  });
-  document.querySelectorAll('#p-home .p-item:not(.him)').forEach((el,i)=>{
-    if(herServices[i]){
-      const p=getPrice(herServices[i].id,herServices[i].price);
-      const priceEl=el.querySelector('.p-item-price');
-      if(priceEl) priceEl.textContent='від '+p+' ₴';
-    }
-  });
-  SERVICES.him.forEach(s=>{
-    const el=document.querySelector('.pr-'+s.id);
-    if(el) el.textContent='від '+getPrice(s.id,s.price)+' ₴';
-  });
-  SERVICES.her.forEach(s=>{
-    const el=document.querySelector('.pr-'+s.id);
-    if(el) el.textContent='від '+getPrice(s.id,s.price)+' ₴';
-  });
-  const upd=document.getElementById('prices-updated');
-  if(upd) upd.textContent='Оновлено: '+new Date().toLocaleDateString('uk-UA');
+  if(typeof renderCalc==='function') renderCalc();
 }
 
 // === ADMIN ===
@@ -271,4 +246,52 @@ function loadTheme(){
   });
 }
 loadTheme();
+
+// === CALCULATOR ===
+let calcMode='him';
+let calcSelected={};
+
+function calcTab(mode){
+  calcMode=mode;
+  calcSelected={};
+  document.getElementById('ct-him').classList.toggle('active',mode==='him');
+  document.getElementById('ct-her').classList.toggle('active',mode==='her');
+  renderCalc();
+}
+
+function renderCalc(){
+  const list=document.getElementById('calc-list');
+  const items=SERVICES[calcMode];
+  list.innerHTML=items.map(s=>{
+    const p=getPrice(s.id,s.price);
+    const on=calcSelected[s.id]?'on':'';
+    return '<div class="calc-item '+on+'" onclick="toggleCalc(\''+s.id+'\')"><div class="calc-check">✓</div><span class="calc-item-name">'+s.name+'</span><span class="calc-item-price">'+p+' ₴</span></div>';
+  }).join('');
+  updateCalcTotal();
+}
+
+function toggleCalc(id){
+  calcSelected[id]=!calcSelected[id];
+  renderCalc();
+}
+
+function updateCalcTotal(){
+  const items=SERVICES[calcMode];
+  let total=0;
+  items.forEach(s=>{
+    if(calcSelected[s.id]) total+=getPrice(s.id,s.price);
+  });
+  document.getElementById('calc-sum').textContent=total+' ₴';
+}
+
+renderCalc();
+
+// === SERVICE TABS ===
+function svcTab(mode){
+  document.getElementById('st-him').classList.toggle('active',mode==='him');
+  document.getElementById('st-her').classList.toggle('active',mode==='her');
+  document.getElementById('svc-him').style.display=mode==='him'?'block':'none';
+  document.getElementById('svc-her').style.display=mode==='her'?'block':'none';
+}
+
 applyPricesToUI();
