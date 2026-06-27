@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E8845A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="KlippaBeauTy">
+<meta name="description" content="KlippaBeauTy — стрижки для чоловіків та б'юті для жінок. OlesIya SaloN.">
+<title>KlippaBeauTy</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#FFF8F4;--bg2:#FEF0E8;--card2:#FAE8DC;
+  --peach:#E8845A;--peach3:#F7C4A8;
+  --muted:#C4906A;--text:#3D1F10;--text2:#7A4030;
+  --brown:#B06040;--rose:#D4697A;--rose2:#F0B8C0;
+  --gold:#C9A84C;--gold2:#F7E8C0;
+  --bdr:rgba(232,132,90,0.18);--bdr2:rgba(232,132,90,0.4);
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Montserrat',sans-serif;font-weight:300;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  padding-bottom:calc(64px + var(--safe-bot));
+}
+
+/* INSTALL BANNER */
+#install-banner{
+  display:none;position:fixed;top:0;left:0;right:0;z-index:999;
+  background:var(--gold);padding:calc(var(--safe-top) + 0.6rem) 1rem 0.6rem;
+  align-items:center;gap:0.8rem;
+}
+#install-banner p{font-size:0.72rem;color:#3D1F10;font-weight:600;flex:1}
+#install-btn{background:#3D1F10;color:var(--gold);border:none;padding:0.5rem 1rem;font-family:'Montserrat',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:20px}
+#install-close{background:none;border:none;font-size:1.2rem;color:#3D1F10;cursor:pointer;padding:0.2rem;flex-shrink:0}
+#install-banner.show{display:flex}
+
+/* TOP NAV */
+.top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,248,244,0.97);
+  border-bottom:1px solid var(--bdr);
+  padding:calc(var(--safe-top) + 0.8rem) 1.2rem 0.8rem;
+  display:flex;align-items:center;justify-content:space-between;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:0.12em;color:var(--peach);text-decoration:none}
+.nav-brand span{color:var(--text2);font-weight:300}
+.nav-time{font-size:0.68rem;color:var(--muted)}
+
+/* PAGES */
+.page{display:none;min-height:100svh;flex-direction:column;padding-top:calc(var(--safe-top) + 56px)}
+.page.active{display:flex}
+
+/* HERO */
+.hero{padding:2rem 1.2rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden;background:var(--bg2)}
+.hero-pat{position:absolute;inset:0;pointer-events:none;opacity:0.1}
+.hero-pat svg{width:100%;height:100%}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;line-height:0.9;color:var(--text);position:relative;z-index:2;margin-bottom:0.4rem}
+.hero-title em{color:var(--peach);font-style:italic}
+.hero-sub{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);z-index:2;position:relative}
+
+/* PARALLEL MENU */
+.parallel{display:grid;grid-template-columns:1fr 1fr}
+.col-head{padding:0.7rem 0.8rem;display:flex;align-items:center;gap:0.4rem;border-bottom:2.5px solid}
+.col-head.him{border-color:var(--brown);border-right:1px solid var(--bdr)}
+.col-head.her{border-color:var(--rose)}
+.col-head-ico{font-size:1rem}
+.col-head-txt{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.col-head.him .col-head-txt{color:var(--brown)}
+.col-head.her .col-head-txt{color:var(--rose)}
+.p-item{padding:0.65rem 0.8rem;border-bottom:1px solid var(--bdr);cursor:pointer;transition:background 0.15s;display:flex;flex-direction:column;gap:2px;min-height:68px;justify-content:center}
+.p-item:active{background:var(--card2)}
+.p-item.him{border-right:1px solid var(--bdr)}
+.p-item-ico{font-size:1.1rem;margin-bottom:2px}
+.p-item-name{font-size:0.75rem;font-weight:600;color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.2}
+.p-item-price{font-size:0.68rem;color:var(--peach);font-weight:600;margin-top:2px}
+.p-item-arr{font-size:0.58rem;color:var(--muted);margin-top:1px}
+.col-more{padding:0.6rem 0.8rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.15s;border-top:1px solid var(--bdr2)}
+.col-more:active{background:var(--card2)}
+.col-more.him{border-right:1px solid var(--bdr)}
+.col-more-txt{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.col-more.him .col-more-txt{color:var(--brown)}
+.col-more.her .col-more-txt{color:var(--rose)}
+.col-more-arr{font-size:1rem;color:var(--muted)}
+
+/* SPECIAL OPTION */
+.special-option{margin:0.9rem 0.9rem 0.9rem;border:1.5px solid var(--gold);border-radius:14px;overflow:hidden;cursor:pointer;transition:all 0.2s}
+.special-option:active{transform:scale(0.98)}
+.special-top{background:var(--gold2);padding:1rem 1.1rem;display:flex;align-items:center;gap:0.8rem}
+.special-ico{font-size:2rem;flex-shrink:0}
+.special-label{font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:3px}
+.special-title{font-size:0.95rem;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--text2);line-height:1.2}
+.special-sub{font-size:0.62rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.special-arr{margin-left:auto;font-size:1.3rem;color:var(--gold);flex-shrink:0}
+.special-bottom{background:#fff;padding:0.65rem 1.1rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(201,168,76,0.2)}
+.special-bottom-txt{font-size:0.62rem;color:var(--muted)}
+.special-bottom-btn{background:var(--gold);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer}
+
+/* DETAIL PAGES */
+.cat-back{display:flex;align-items:center;gap:0.5rem;padding:1rem 1rem 0.5rem;cursor:pointer}
+.cat-back-arr{font-size:1.3rem;color:var(--peach)}
+.cat-back-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.cat-title-row{padding:0 1rem 0.9rem;border-bottom:2px solid}
+.cat-title-row.him{border-color:var(--brown)}
+.cat-title-row.her{border-color:var(--rose)}
+.cat-title-row.special{border-color:var(--gold)}
+.cat-icon{font-size:1.8rem;margin-bottom:4px}
+.cat-name{font-size:1.5rem;font-weight:300;font-family:'Cormorant Garamond',serif;color:var(--text)}
+.cat-name em{font-style:italic}
+.cat-name.him em{color:var(--brown)}
+.cat-name.her em{color:var(--rose)}
+.cat-name.special em{color:var(--gold)}
+.detail-item{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border-bottom:1px solid var(--bdr);transition:background 0.15s}
+.detail-item:active{background:var(--card2)}
+.detail-ico{font-size:1.4rem;width:32px;text-align:center;flex-shrink:0}
+.detail-name{font-size:0.82rem;font-weight:600;color:var(--text);font-family:'Cormorant Garamond',serif}
+.detail-desc{font-size:0.62rem;color:var(--muted);margin-top:2px;line-height:1.4}
+.detail-price{margin-left:auto;font-size:0.82rem;color:var(--peach);font-weight:700;font-family:'Cormorant Garamond',serif;flex-shrink:0;padding-left:0.5rem}
+
+/* SPECIAL PAGE */
+.special-page-header{padding:1rem 1.1rem 0.9rem;background:var(--gold2);border-bottom:2px solid var(--gold)}
+.special-page-ico{font-size:2.2rem;margin-bottom:4px}
+.special-page-lbl{font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.special-page-title{font-size:1.5rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--text)}
+.special-page-title em{font-style:italic;color:var(--gold)}
+.special-page-sub{font-size:0.68rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.special-msg{margin:1rem;padding:1rem;background:#fff;border:1.5px solid rgba(201,168,76,0.3);border-radius:12px}
+.special-msg p{font-size:0.75rem;color:var(--text2);line-height:1.7;font-family:'Cormorant Garamond',serif;font-style:italic}
+.special-msg-sign{font-size:0.68rem;color:var(--muted);margin-top:0.5rem;font-weight:600}
+.sci-section-lbl{padding:0.25rem 1rem 0.6rem;font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.sci-item{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border-bottom:1px solid var(--bdr);cursor:pointer;transition:background 0.15s}
+.sci-item:active{background:var(--card2)}
+.sci-ico{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:1.5px solid}
+.sci-ico.ig{background:rgba(225,48,108,0.07);border-color:rgba(225,48,108,0.3)}
+.sci-ico.tg{background:rgba(0,136,204,0.07);border-color:rgba(0,136,204,0.3)}
+.sci-ico.ph{background:rgba(76,175,80,0.07);border-color:rgba(76,175,80,0.3)}
+.sci-lbl{font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+.sci-val{font-size:0.82rem;color:var(--text);margin-top:2px;font-weight:600}
+.sci-arr{margin-left:auto;font-size:1.1rem;color:var(--muted)}
+.reply-box{margin:1rem;padding:0.9rem;background:var(--gold2);border-radius:12px;text-align:center}
+.reply-box p{font-size:0.68rem;color:var(--text2);line-height:1.6}
+
+/* BOOKING */
+.booking-wrap{padding:0 1rem 1.5rem}
+.f-lbl{display:block;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;margin-top:0.9rem;font-weight:700}
+.f-inp,.f-sel{width:100%;background:#fff;border:1.5px solid var(--bdr2);color:var(--text);padding:0.65rem 0.8rem;font-size:0.82rem;border-radius:8px;font-family:'Montserrat',sans-serif;outline:none;-webkit-appearance:none;appearance:none}
+.f-inp::placeholder{color:var(--muted)}
+.f-inp:focus,.f-sel:focus{border-color:var(--peach)}
+.mode-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px}
+.mbtn{padding:0.65rem;text-align:center;border-radius:50px;border:2px solid var(--bdr2);font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;color:var(--muted);background:#fff}
+.mbtn.s-him{background:var(--brown);border-color:var(--brown);color:#fff}
+.mbtn.s-her{background:var(--rose);border-color:var(--rose);color:#fff}
+.note-box{text-align:center;font-size:0.62rem;color:var(--muted);margin-top:0.7rem;line-height:1.6;padding:0.7rem;background:var(--bg2);border-radius:8px}
+.ig-btn{display:block;width:100%;margin-top:0.7rem;padding:0.8rem;border-radius:50px;text-align:center;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;cursor:pointer;border:none;font-family:'Montserrat',sans-serif}
+.date-time-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.9rem}
+
+/* CONTACT PAGE */
+.contact-item{display:flex;align-items:center;gap:0.75rem;padding:0.9rem 1rem;border-bottom:1px solid var(--bdr);cursor:pointer;transition:background 0.15s}
+.contact-item:active{background:var(--card2)}
+.cico{width:42px;height:42px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:1px solid var(--bdr2);flex-shrink:0}
+.clbl{font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+.cval{font-size:0.82rem;color:var(--text);margin-top:2px;font-weight:500}
+.carw{margin-left:auto;color:var(--muted);font-size:1.1rem}
+.install-box{margin:1rem;background:#fff;border:1.5px solid var(--peach3);padding:1rem;border-radius:12px;text-align:center}
+.install-box h3{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--peach);margin-bottom:0.5rem;font-weight:600}
+.install-box p{font-size:0.65rem;color:var(--muted);line-height:1.7}
+
+/* PAGE HEADER */
+.page-hdr{padding:1rem 1rem 0.7rem}
+.page-hdr-lbl{font-size:0.52rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--peach);display:block;margin-bottom:3px;font-weight:600}
+.page-hdr-title{font-size:1.4rem;font-weight:300;font-family:'Cormorant Garamond',serif;color:var(--text)}
+.page-hdr-title em{font-style:italic;color:var(--peach)}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(255,248,244,0.97);
+  border-top:1px solid var(--bdr);
+  padding:0.5rem 0 calc(0.5rem + var(--safe-bot));
+  display:flex;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:0.25rem 0;color:var(--muted);transition:color 0.2s;text-decoration:none}
+.ni.on{color:var(--peach)}
+.ni svg{width:22px;height:22px}
+.ni-lbl{font-size:0.52rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:0.01ms !important}}
+</style>
+</head>
+<body>
+
+<div id="install-banner">
+  <p>📲 Встанови як додаток!</p>
+  <button id="install-btn">Встановити</button>
+  <button id="install-close">✕</button>
+</div>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="#" onclick="gp('home');return false;">Klippa<span>BeauTy</span></a>
+  <span class="nav-time" id="nav-time"></span>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="p-home">
+  <section class="hero">
+    <div class="hero-pat" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <defs><pattern id="pp" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+          <text x="4" y="42" font-family="Georgia,serif" font-size="30" font-style="italic" fill="none" stroke="#E8845A" stroke-width="0.8">K</text>
+          <text x="42" y="42" font-family="Georgia,serif" font-size="30" font-style="italic" fill="none" stroke="#E8845A" stroke-width="0.8">B</text>
+        </pattern></defs>
+        <rect width="100%" height="100%" fill="url(#pp)"/>
+      </svg>
+    </div>
+    <div class="hero-title">Klippa<br><em>BeauTy</em></div>
+    <div class="hero-sub">Beauty Club · OlesIya SaloN · Київ</div>
+  </section>
+
+  <div class="parallel">
+    <div class="col-head him"><span class="col-head-ico">✂️</span><span class="col-head-txt">Для нього</span></div>
+    <div class="col-head her"><span class="col-head-ico">💅</span><span class="col-head-txt">Для неї</span></div>
+    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">✂️</span><div class="p-item-name">Чоловіча стрижка</div><div class="p-item-price">від 280 ₴</div><div class="p-item-arr">всі стрижки →</div></div>
+    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">💇</span><div class="p-item-name">Жіноча стрижка</div><div class="p-item-price">від 320 ₴</div><div class="p-item-arr">всі стрижки →</div></div>
+    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">🪄</span><div class="p-item-name">Фейд</div><div class="p-item-price">від 350 ₴</div><div class="p-item-arr">детальніше →</div></div>
+    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">💆</span><div class="p-item-name">Каре</div><div class="p-item-price">від 380 ₴</div><div class="p-item-arr">детальніше →</div></div>
+    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">🧔</span><div class="p-item-name">Борода + корекція</div><div class="p-item-price">від 180 ₴</div><div class="p-item-arr">детальніше →</div></div>
+    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">✂️</span><div class="p-item-name">Кінчики</div><div class="p-item-price">від 220 ₴</div><div class="p-item-arr">детальніше →</div></div>
+    <div class="p-item him" onclick="gp('him')"><span class="p-item-ico">🪒</span><div class="p-item-name">Бритво гоління</div><div class="p-item-price">від 250 ₴</div><div class="p-item-arr">детальніше →</div></div>
+    <div class="p-item" onclick="gp('her')"><span class="p-item-ico">✨</span><div class="p-item-name">Гель-лак манікюр</div><div class="p-item-price">від 450 ₴</div><div class="p-item-arr">детальніше →</div></div>
+    <div class="col-more him" onclick="gp('him')"><span class="col-more-txt">Всі послуги</span><span class="col-more-arr">›</span></div>
+    <div class="col-more her" onclick="gp('her')"><span class="col-more-txt">Всі послуги</span><span class="col-more-arr">›</span></div>
+  </div>
+
+  <div class="special-option" onclick="gp('special')">
+    <div class="special-top">
+      <span class="special-ico">✨</span>
+      <div>
+        <div class="special-label">Особливий випадок</div>
+        <div class="special-title">Плануєте щось особливе?</div>
+        <div class="special-sub">Весілля, свято, фотосесія — напишіть нам</div>
+      </div>
+      <span class="special-arr">›</span>
+    </div>
+    <div class="special-bottom">
+      <span class="special-bottom-txt">Індивідуальний підхід</span>
+      <button class="special-bottom-btn">Зв'язатись</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOR HIM -->
+<div class="page" id="p-him">
+  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
+  <div class="cat-title-row him"><div class="cat-icon">✂️</div><div class="cat-name him">Для <em>нього</em></div></div>
+  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Чоловіча стрижка</div><div class="detail-desc">Класична, будь-який стиль.</div></div><div class="detail-price">від 280 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🪄</div><div><div class="detail-name">Фейд</div><div class="detail-desc">Skin fade, drop fade, high fade.</div></div><div class="detail-price">від 350 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">⚡</div><div><div class="detail-name">Андеркат</div><div class="detail-desc">Контрастна з виголеними скронями.</div></div><div class="detail-price">від 320 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🧔</div><div><div class="detail-name">Корекція бороди</div><div class="detail-desc">Моделювання контуру і форми.</div></div><div class="detail-price">від 180 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💈</div><div><div class="detail-name">Стрижка + борода</div><div class="detail-desc">Комплекс зі знижкою.</div></div><div class="detail-price">від 380 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🪒</div><div><div class="detail-name">Бритво гоління</div><div class="detail-desc">Класичне + гарячий рушник + бальзам.</div></div><div class="detail-price">від 250 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💧</div><div><div class="detail-name">Укладка + стайлінг</div><div class="detail-desc">Фен, воск, помада.</div></div><div class="detail-price">від 150 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">👦</div><div><div class="detail-name">Дитяча стрижка</div><div class="detail-desc">До 12 років, швидко і комфортно.</div></div><div class="detail-price">від 200 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">👑</div><div><div class="detail-name">VIP пакет</div><div class="detail-desc">Стрижка + борода + гоління + укладка.</div></div><div class="detail-price">від 600 ₴</div></div>
+</div>
+
+<!-- FOR HER -->
+<div class="page" id="p-her">
+  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
+  <div class="cat-title-row her"><div class="cat-icon">💅</div><div class="cat-name her">Для <em>неї</em></div></div>
+  <div class="detail-item"><div class="detail-ico">💇</div><div><div class="detail-name">Жіноча стрижка</div><div class="detail-desc">Будь-яка довжина, будь-який стиль.</div></div><div class="detail-price">від 320 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💆</div><div><div class="detail-name">Каре</div><div class="detail-desc">Класичне, видовжене, з чубком.</div></div><div class="detail-price">від 380 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Кінчики</div><div class="detail-desc">Освіження форми без втрати довжини.</div></div><div class="detail-price">від 220 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">✨</div><div><div class="detail-name">Гель-лак манікюр</div><div class="detail-desc">Зміцнення, покриття, дизайн. До 4 тижнів.</div></div><div class="detail-price">від 450 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💅</div><div><div class="detail-name">Педикюр апаратний</div><div class="detail-desc">Апаратна обробка + гель-лак покриття.</div></div><div class="detail-price">від 550 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">👁️</div><div><div class="detail-name">Нарощування вій</div><div class="detail-desc">2D–6D техніки. Натуральний або об'ємний.</div></div><div class="detail-price">від 550 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🌸</div><div><div class="detail-name">Ламінування брів</div><div class="detail-desc">Укладка та фіксація до 6 тижнів.</div></div><div class="detail-price">від 350 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💄</div><div><div class="detail-name">Макіяж вечірній</div><div class="detail-desc">Стійкий макіяж для особливих подій.</div></div><div class="detail-price">від 700 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💎</div><div><div class="detail-name">Манікюр + Педикюр</div><div class="detail-desc">Комплекс зі знижкою −20%.</div></div><div class="detail-price">від 800 ₴</div></div>
+</div>
+
+<!-- SPECIAL -->
+<div class="page" id="p-special">
+  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
+  <div class="special-page-header">
+    <div class="special-page-ico">✨</div>
+    <div class="special-page-lbl">Особливий випадок</div>
+    <div class="special-page-title">Плануєте щось <em>особливе?</em></div>
+    <div class="special-page-sub">Напишіть нам — і ми підберемо саме те, що потрібно</div>
+  </div>
+  <div class="special-msg">
+    <p>«Весілля, день народження, випускний, фотосесія або просто хочете виглядати ідеально — розкажіть нам про свій день, і ми самі запропонуємо найкраще рішення.»</p>
+    <div class="special-msg-sign">— Олеся та команда KlippaBeauTy</div>
+  </div>
+  <div class="sci-section-lbl">Зв'язатись з нами</div>
+  <a href="https://instagram.com/klippa_beauty_club" class="sci-item">
+    <div class="sci-ico ig">📸</div>
+    <div><div class="sci-lbl">Instagram — найшвидше</div><div class="sci-val">@klippa_beauty_club</div></div>
+    <span class="sci-arr">›</span>
+  </a>
+  <a href="https://t.me/klippabeauty" class="sci-item">
+    <div class="sci-ico tg">✈️</div>
+    <div><div class="sci-lbl">Telegram</div><div class="sci-val">@klippabeauty</div></div>
+    <span class="sci-arr">›</span>
+  </a>
+  <a href="tel:+380000000000" class="sci-item">
+    <div class="sci-ico ph">📞</div>
+    <div><div class="sci-lbl">Телефон</div><div class="sci-val">+38 (000) 000-00-00</div></div>
+    <span class="sci-arr">›</span>
+  </a>
+  <div class="reply-box"><p>Відповідаємо протягом <strong>1 години</strong> у робочий час<br><span style="color:var(--muted)">Пн–Сб: 09:00–20:00</span></p></div>
+</div>
+
+<!-- BOOKING -->
+<div class="page" id="p-booking">
+  <div class="page-hdr">
+    <span class="page-hdr-lbl">Онлайн запис</span>
+    <div class="page-hdr-title">Записатись <em>до майстра</em></div>
+  </div>
+  <div class="booking-wrap">
+    <span class="f-lbl">Для кого запис?</span>
+    <div class="mode-row">
+      <div class="mbtn s-him" id="mb-b" onclick="sm('b')">✂️ Для мене</div>
+      <div class="mbtn" id="mb-g" onclick="sm('g')">💅 Для неї</div>
+    </div>
+    <span class="f-lbl">Ім'я</span>
+    <input class="f-inp" type="text" placeholder="Як вас звати?" autocomplete="given-name">
+    <span class="f-lbl">Телефон</span>
+    <input class="f-inp" type="tel" placeholder="+38 (0__) ___-__-__" autocomplete="tel">
+    <span class="f-lbl">Послуга</span>
+    <select class="f-sel">
+      <option disabled selected>Оберіть послугу...</option>
+      <optgroup label="✂️ Для нього">
+        <option>Чоловіча стрижка — від 280 ₴</option>
+        <option>Фейд — від 350 ₴</option>
+        <option>Андеркат — від 320 ₴</option>
+        <option>Стрижка + борода — від 380 ₴</option>
+        <option>Корекція бороди — від 180 ₴</option>
+        <option>Бритво гоління — від 250 ₴</option>
+        <option>VIP пакет — від 600 ₴</option>
+      </optgroup>
+      <optgroup label="💅 Для неї">
+        <option>Жіноча стрижка — від 320 ₴</option>
+        <option>Каре — від 380 ₴</option>
+        <option>Кінчики — від 220 ₴</option>
+        <option>Гель-лак манікюр — від 450 ₴</option>
+        <option>Педикюр — від 550 ₴</option>
+        <option>Нарощування вій — від 550 ₴</option>
+        <option>Ламінування брів — від 350 ₴</option>
+        <option>Макіяж — від 700 ₴</option>
+      </optgroup>
+    </select>
+    <div class="date-time-row">
+      <div>
+        <span class="f-lbl" style="margin-top:0">Дата</span>
+        <input class="f-inp" type="date" id="f-date">
+      </div>
+      <div>
+        <span class="f-lbl" style="margin-top:0">Час</span>
+        <select class="f-sel">
+          <option disabled selected>--:--</option>
+          <option>09:00</option><option>10:00</option><option>11:00</option>
+          <option>12:00</option><option>13:00</option><option>14:00</option>
+          <option>15:00</option><option>16:00</option><option>17:00</option>
+          <option>18:00</option><option>19:00</option>
+        </select>
+      </div>
+    </div>
+    <div class="note-box">🔧 Кнопка «Надіслати» з'явиться після тестування</div>
+    <a href="https://instagram.com/klippa_beauty_club" class="ig-btn">📸 Записатись через Instagram</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="p-contact">
+  <div class="page-hdr">
+    <span class="page-hdr-lbl">KlippaBeauTy</span>
+    <div class="page-hdr-title">Контакти <em>та адреса</em></div>
+  </div>
+  <a href="https://instagram.com/klippa_beauty_club" class="contact-item"><div class="cico">📸</div><div><div class="clbl">Instagram</div><div class="cval">@klippa_beauty_club</div></div><span class="carw">›</span></a>
+  <a href="tel:+380000000000" class="contact-item"><div class="cico">📞</div><div><div class="clbl">Телефон</div><div class="cval">+38 (000) 000-00-00</div></div><span class="carw">›</span></a>
+  <a href="https://t.me/klippabeauty" class="contact-item"><div class="cico">✈️</div><div><div class="clbl">Telegram</div><div class="cval">@klippabeauty</div></div><span class="carw">›</span></a>
+  <div class="contact-item"><div class="cico">🕐</div><div><div class="clbl">Графік роботи</div><div class="cval">Пн–Сб: 09:00–20:00</div></div></div>
+  <div class="contact-item"><div class="cico">📍</div><div><div class="clbl">Місто</div><div class="cval">Київ, Україна</div></div></div>
+  <div class="install-box">
+    <h3>📲 Як встановити на телефон?</h3>
+    <p><strong style="color:var(--text)">Android Chrome:</strong><br>Меню ⋮ → «Додати на головний екран»<br><br>
+    <strong style="color:var(--text)">iPhone Safari:</strong><br>Кнопка □↑ → «На головний екран»</p>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" role="navigation">
+  <a href="#" class="ni on" id="ni-home" onclick="gp('home');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="ni-lbl">Головна</span>
+  </a>
+  <a href="#" class="ni" id="ni-him" onclick="gp('him');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+    <span class="ni-lbl">Для нього</span>
+  </a>
+  <a href="#" class="ni" id="ni-her" onclick="gp('her');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="5"/><path d="M3 20c0-4 4-7 9-7s9 3 9 7"/></svg>
+    <span class="ni-lbl">Для неї</span>
+  </a>
+  <a href="#" class="ni" id="ni-special" onclick="gp('special');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span class="ni-lbl">Особливе</span>
+  </a>
+  <a href="#" class="ni" id="ni-contact" onclick="gp('contact');return false;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span class="ni-lbl">Контакти</span>
+  </a>
+</nav>
+
+<script>
+const allPages=['home','him','her','special','booking','contact'];
+
+function gp(n){
+  window.scrollTo(0,0);
+  allPages.forEach(p=>{
+    document.getElementById('p-'+p).classList.toggle('active',p===n);
+    const ni=document.getElementById('ni-'+p);
+    if(ni) ni.classList.toggle('on',p===n);
+  });
+}
+
+function sm(m){
+  document.getElementById('mb-b').className='mbtn'+(m==='b'?' s-him':'');
+  document.getElementById('mb-g').className='mbtn'+(m==='g'?' s-her':'');
+}
+
+// Clock
+function updateTime(){
+  const now=new Date();
+  const h=String(now.getHours()).padStart(2,'0');
+  const m=String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('nav-time').textContent=h+':'+m;
+}
+updateTime(); setInterval(updateTime,30000);
+
+// Min date
+const today=new Date().toISOString().split('T')[0];
+const fd=document.getElementById('f-date');
+if(fd) fd.min=today;
+
+// PWA Install
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  document.getElementById('install-banner').classList.add('show');
+});
+document.getElementById('install-btn').addEventListener('click',async()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const{outcome}=await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  document.getElementById('install-banner').classList.remove('show');
+});
+document.getElementById('install-close').addEventListener('click',()=>{
+  document.getElementById('install-banner').classList.remove('show');
+});
+
+// Service Worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
