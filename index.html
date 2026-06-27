@@ -242,6 +242,20 @@ body{
 #ios-banner .ios-steps{font-size:0.65rem;color:var(--muted);line-height:1.8}
 #ios-banner .ios-close{position:absolute;top:8px;right:10px;background:none;border:none;font-size:1.1rem;color:var(--muted);cursor:pointer}
 
+/* INSTAGRAM CTA */
+.ig-cta{margin:0.8rem;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform 0.15s}
+.ig-cta:active{transform:scale(0.98)}
+.ig-cta-main{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);padding:1.2rem;display:flex;align-items:center;gap:1rem;text-decoration:none}
+.ig-cta-icon{font-size:2.8rem;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2))}
+.ig-cta-text{color:#fff}
+.ig-cta-label{font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85;font-weight:600}
+.ig-cta-handle{font-size:1.1rem;font-weight:700;margin-top:2px}
+.ig-cta-sub{font-size:0.68rem;margin-top:4px;opacity:0.9;line-height:1.4}
+.ig-cta-arr{margin-left:auto;font-size:1.8rem;color:rgba(255,255,255,0.7);flex-shrink:0}
+.ig-cta-bottom{background:rgba(0,0,0,0.08);padding:0.6rem 1.2rem;display:flex;align-items:center;justify-content:space-between}
+.ig-cta-bottom span{font-size:0.6rem;color:rgba(255,255,255,0.8);font-weight:500}
+.ig-cta-btn{background:rgba(255,255,255,0.25);color:#fff;border:1.5px solid rgba(255,255,255,0.4);border-radius:20px;padding:5px 14px;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif}
+
 /* THEME PICKER */
 .theme-row{display:flex;gap:8px;padding:0.5rem 1rem;flex-wrap:wrap}
 .theme-dot{width:36px;height:36px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:border-color 0.2s,transform 0.15s;flex-shrink:0}
@@ -316,6 +330,22 @@ body{
     <div class="hero-title">Klippa<br><em>BeauTy</em></div>
     <div class="hero-sub">Beauty Club · OlesIya SaloN · Київ</div>
   </section>
+
+  <a href="https://instagram.com/klippa_beauty_club" target="_blank" class="ig-cta" style="text-decoration:none">
+    <div class="ig-cta-main">
+      <span class="ig-cta-icon">📸</span>
+      <div class="ig-cta-text">
+        <div class="ig-cta-label">Підписуйтесь в Instagram</div>
+        <div class="ig-cta-handle">@klippa_beauty_club</div>
+        <div class="ig-cta-sub">Роботи майстрів, акції, запис онлайн</div>
+      </div>
+      <span class="ig-cta-arr">›</span>
+    </div>
+    <div class="ig-cta-bottom">
+      <span>Записатись через Direct</span>
+      <button class="ig-cta-btn">Відкрити</button>
+    </div>
+  </a>
 
   <div class="parallel">
     <div class="col-head him"><span class="col-head-ico">✂️</span><span class="col-head-txt">Для нього</span></div>
