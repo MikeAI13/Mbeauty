@@ -242,6 +242,20 @@ body{
 #ios-banner .ios-steps{font-size:0.65rem;color:var(--muted);line-height:1.8}
 #ios-banner .ios-close{position:absolute;top:8px;right:10px;background:none;border:none;font-size:1.1rem;color:var(--muted);cursor:pointer}
 
+/* PRICES PAGE */
+.prices-location{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;background:var(--bg2);font-size:0.65rem;color:var(--muted)}
+.prices-location strong{color:var(--text)}
+.prices-updated{text-align:center;font-size:0.6rem;color:var(--muted);padding:0.5rem 1rem;font-style:italic}
+.prices-cta{margin:0.8rem 1rem;padding:0.8rem;background:var(--bg2);border-radius:10px;text-align:center}
+.prices-cta p{font-size:0.68rem;color:var(--text2);line-height:1.5}
+.prices-banner{display:flex;align-items:center;gap:0.8rem;margin:0.8rem;padding:0.9rem 1rem;background:linear-gradient(135deg,var(--peach),var(--brown));border-radius:12px;cursor:pointer;text-decoration:none;transition:transform 0.15s}
+.prices-banner:active{transform:scale(0.98)}
+.prices-banner-ico{font-size:1.6rem;flex-shrink:0}
+.prices-banner-text{color:#fff;flex:1}
+.prices-banner-title{font-size:0.82rem;font-weight:700;font-family:'Cormorant Garamond',serif}
+.prices-banner-sub{font-size:0.6rem;opacity:0.85;margin-top:2px}
+.prices-banner-arr{font-size:1.3rem;color:rgba(255,255,255,0.7);flex-shrink:0}
+
 /* INSTAGRAM CTA */
 .ig-cta{margin:0.8rem;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform 0.15s}
 .ig-cta:active{transform:scale(0.98)}
@@ -381,6 +395,15 @@ body{
     <div class="hero-title">Klippa<br><em>BeauTy</em></div>
     <div class="hero-sub">Beauty Club · OlesIya SaloN · Київ</div>
   </section>
+
+  <div class="prices-banner" onclick="gp('prices')">
+    <span class="prices-banner-ico">💰</span>
+    <div class="prices-banner-text">
+      <div class="prices-banner-title">Актуальні ціни — Шулявка</div>
+      <div class="prices-banner-sub">Повний прайс-лист салону</div>
+    </div>
+    <span class="prices-banner-arr">›</span>
+  </div>
 
   <a href="https://instagram.com/klippa_beauty_club" target="_blank" class="ig-cta" style="text-decoration:none">
     <div class="ig-cta-main">
@@ -568,6 +591,43 @@ body{
   </div>
 </div>
 
+<!-- PRICES -->
+<div class="page" id="p-prices">
+  <div class="cat-back" onclick="gp('home')"><span class="cat-back-arr">‹</span><span class="cat-back-lbl">Назад</span></div>
+  <div class="page-hdr">
+    <span class="page-hdr-lbl">Шулявка · Київ</span>
+    <div class="page-hdr-title">Актуальні <em>ціни</em></div>
+  </div>
+  <div class="prices-location">📍 <strong>вул. Олекси Тихого 87</strong> · район Шулявка</div>
+
+  <div class="cat-title-row him" style="margin-top:0.5rem"><div class="cat-icon">✂️</div><div class="cat-name him">Для <em>нього</em></div></div>
+  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Чоловіча стрижка</div><div class="detail-desc">Класична, будь-який стиль.</div></div><div class="detail-price pr-h1">від 280 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🪄</div><div><div class="detail-name">Фейд</div><div class="detail-desc">Skin fade, drop fade, high fade.</div></div><div class="detail-price pr-h2">від 350 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">⚡</div><div><div class="detail-name">Андеркат</div><div class="detail-desc">Контрастна з виголеними скронями.</div></div><div class="detail-price pr-h3">від 320 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🧔</div><div><div class="detail-name">Корекція бороди</div><div class="detail-desc">Моделювання контуру і форми.</div></div><div class="detail-price pr-h4">від 180 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💈</div><div><div class="detail-name">Стрижка + борода</div><div class="detail-desc">Комплекс зі знижкою.</div></div><div class="detail-price pr-h5">від 380 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🪒</div><div><div class="detail-name">Бритво гоління</div><div class="detail-desc">Класичне + гарячий рушник + бальзам.</div></div><div class="detail-price pr-h6">від 250 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💧</div><div><div class="detail-name">Укладка + стайлінг</div><div class="detail-desc">Фен, воск, помада.</div></div><div class="detail-price pr-h7">від 150 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">👦</div><div><div class="detail-name">Дитяча стрижка</div><div class="detail-desc">До 12 років, швидко і комфортно.</div></div><div class="detail-price pr-h8">від 200 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">👑</div><div><div class="detail-name">VIP пакет</div><div class="detail-desc">Стрижка + борода + гоління + укладка.</div></div><div class="detail-price pr-h9">від 600 ₴</div></div>
+
+  <div class="cat-title-row her" style="margin-top:0.8rem"><div class="cat-icon">💅</div><div class="cat-name her">Для <em>неї</em></div></div>
+  <div class="detail-item"><div class="detail-ico">💇</div><div><div class="detail-name">Жіноча стрижка</div><div class="detail-desc">Будь-яка довжина, будь-який стиль.</div></div><div class="detail-price pr-s1">від 320 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💆</div><div><div class="detail-name">Каре</div><div class="detail-desc">Класичне, видовжене, з чубком.</div></div><div class="detail-price pr-s2">від 380 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">✂️</div><div><div class="detail-name">Кінчики</div><div class="detail-desc">Освіження форми без втрати довжини.</div></div><div class="detail-price pr-s3">від 220 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">✨</div><div><div class="detail-name">Гель-лак манікюр</div><div class="detail-desc">Зміцнення, покриття, дизайн. До 4 тижнів.</div></div><div class="detail-price pr-s4">від 450 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💅</div><div><div class="detail-name">Педикюр апаратний</div><div class="detail-desc">Апаратна обробка + гель-лак покриття.</div></div><div class="detail-price pr-s5">від 550 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">👁️</div><div><div class="detail-name">Нарощування вій</div><div class="detail-desc">2D–6D техніки. Натуральний або об'ємний.</div></div><div class="detail-price pr-s6">від 550 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">🌸</div><div><div class="detail-name">Ламінування брів</div><div class="detail-desc">Укладка та фіксація до 6 тижнів.</div></div><div class="detail-price pr-s7">від 350 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💄</div><div><div class="detail-name">Макіяж вечірній</div><div class="detail-desc">Стійкий макіяж для особливих подій.</div></div><div class="detail-price pr-s8">від 700 ₴</div></div>
+  <div class="detail-item"><div class="detail-ico">💎</div><div><div class="detail-name">Манікюр + Педикюр</div><div class="detail-desc">Комплекс зі знижкою −20%.</div></div><div class="detail-price pr-s9">від 800 ₴</div></div>
+
+  <div class="prices-updated" id="prices-updated">Оновлено: сьогодні</div>
+  <div class="prices-cta">
+    <p>📸 Записатись або уточнити ціну —<br><strong><a href="https://instagram.com/klippa_beauty_club" target="_blank" style="color:var(--peach);text-decoration:none">@klippa_beauty_club</a></strong></p>
+  </div>
+</div>
+
 <!-- ADMIN -->
 <div class="page" id="p-admin">
   <div class="page-hdr">
@@ -643,7 +703,7 @@ body{
 </nav>
 
 <script>
-const allPages=['home','him','her','special','booking','contact','admin'];
+const allPages=['home','him','her','special','booking','contact','prices','admin'];
 
 function gp(n){
   window.scrollTo(0,0);
@@ -782,6 +842,17 @@ function applyPricesToUI(){
       if(priceEl) priceEl.textContent='від '+p+' ₴';
     }
   });
+  // Prices page
+  SERVICES.him.forEach(s=>{
+    const el=document.querySelector('.pr-'+s.id);
+    if(el) el.textContent='від '+getPrice(s.id,s.price)+' ₴';
+  });
+  SERVICES.her.forEach(s=>{
+    const el=document.querySelector('.pr-'+s.id);
+    if(el) el.textContent='від '+getPrice(s.id,s.price)+' ₴';
+  });
+  const upd=document.getElementById('prices-updated');
+  if(upd) upd.textContent='Оновлено: '+new Date().toLocaleDateString('uk-UA');
 }
 
 function renderAdminPrices(){
