@@ -1,5 +1,5 @@
 // === NAVIGATION ===
-const allPages=['home','services','contact','admin'];
+const allPages=['home','services','contact'];
 
 function gp(n){
   window.scrollTo(0,0);
