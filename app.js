@@ -247,6 +247,14 @@ function loadTheme(){
 }
 loadTheme();
 
+// === URL HASH NAVIGATION ===
+function checkHash(){
+  const hash=window.location.hash.replace('#','');
+  if(hash&&allPages.includes(hash)) gp(hash);
+}
+checkHash();
+window.addEventListener('hashchange',checkHash);
+
 // === CALCULATOR ===
 let calcMode='him';
 let calcSelected={};
